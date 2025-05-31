@@ -5,7 +5,6 @@ Una introducción a los conceptos básicos del uso de Docker.
 ### Antes de comenzar...
 
 1. [Instala Docker en tu máquina.](https://docs.docker.com/engine/installation/)
-2. [Clona este repositorio localmente.](https://github.com/delner/docker-training)
 
 ### Una vez que estés listo...
 
