@@ -12,10 +12,10 @@ Sigue la [presentación](https://donde.me) y abre cada ejercicio cuando se te in
 
 ### Ejercicios Básicos
 
-1. [Módulo 1] https://github.com/dinin123/Curso-Docker/blob/main/Ejercicios/M%C3%B3dulo1/README.md
-1. [Módulo 2] https://github.com/dinin123/Curso-Docker/blob/main/Ejercicios/M%C3%B3dulo2/README.md
-1. [Módulo 3] https://github.com/dinin123/Curso-Docker/blob/main/Ejercicios/M%C3%B3dulo3/README.md
-1. [Módulo 4] https://github.com/dinin123/Curso-Docker/blob/main/Ejercicios/M%C3%B3dulo4/README.md
-1. [Módulo 5] https://github.com/dinin123/Curso-Docker/blob/main/Ejercicios/M%C3%B3dulo5/README.md
+1. [Módulo 1 - Primeros pasos]       https://github.com/dinin123/Curso-Docker/blob/main/Ejercicios/M%C3%B3dulo1/README.md
+1. [Módulo 2 - Gestión de Imágenes]  https://github.com/dinin123/Curso-Docker/blob/main/Ejercicios/M%C3%B3dulo2/README.md
+1. [Módulo 3 - Gestión de Volúmenes] https://github.com/dinin123/Curso-Docker/blob/main/Ejercicios/M%C3%B3dulo3/README.md
+1. [Módulo 4 - Gestión de Redes]     https://github.com/dinin123/Curso-Docker/blob/main/Ejercicios/M%C3%B3dulo4/README.md
+1. [Módulo 5 - Docker Compose]       https://github.com/dinin123/Curso-Docker/blob/main/Ejercicios/M%C3%B3dulo5/README.md
 
 .
