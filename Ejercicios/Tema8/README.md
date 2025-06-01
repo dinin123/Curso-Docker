@@ -237,7 +237,7 @@ docker rm -f test_nginx
 
 ---
 
-## 1. Auditar imágenes locales con Trivy (desde un contenedor)
+# 1. Auditar imágenes locales con Trivy (desde un contenedor)
 
 Trivy es una herramienta muy usada para detectar vulnerabilidades, paquetes desactualizados y malas configuraciones en imágenes y contenedores Docker.
 
