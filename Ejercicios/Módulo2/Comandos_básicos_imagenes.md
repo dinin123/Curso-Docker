@@ -1,4 +1,4 @@
-# Comandos Básicos de Docker para Creación y Gestión de Imágenes 🛠️
+# Comandos Básicos Docker para Creación y Gestión de Imágenes 🛠️
 
 ## Creación de Imágenes
 
