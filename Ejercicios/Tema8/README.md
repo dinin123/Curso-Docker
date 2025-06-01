@@ -228,6 +228,7 @@ docker: Error response from daemon: failed to mount local volume: mount /var/lib
 
 ```bash
 docker rm -f test_nginx
+```
 
 ---
 
