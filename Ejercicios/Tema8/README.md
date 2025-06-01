@@ -233,4 +233,98 @@ docker rm -f test_nginx
 ---
 
 
+#Ejercicio 3.  Auditoría de seguridad de contenedores Docker desde otro contenedor
+
+---
+
+## 1. Auditar imágenes locales con Trivy (desde un contenedor)
+
+Trivy es una herramienta muy usada para detectar vulnerabilidades, paquetes desactualizados y malas configuraciones en imágenes y contenedores Docker.
+
+**Ejemplo:**
+```bash
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image nginx:latest
+```
+
+---
+
+## 2. Auditar una imagen o contenedor en ejecución
+
+Para escanear una imagen o un contenedor ya en uso (por nombre o ID):
+
+```bash
+docker ps  # para ver el nombre o ID
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image nginx_logs
+```
+
+---
+
+## 3. Auditar todas las imágenes locales con Trivy
+
+Puedes escanear todas las imágenes almacenadas en tu host:
+
+```bash
+docker images --format '{{.Repository}}:{{.Tag}}' | xargs -L1 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image
+```
+
+---
+
+## 4. Auditar buenas prácticas y hardening con Dockle
+
+Dockle detecta problemas como uso de usuario root, falta de HEALTHCHECK, puertos innecesarios, etc.
+
+```bash
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock goodwithtech/dockle:latest nginx:latest
+```
+
+---
+
+## 5. Chequeos manuales en contenedores (básicos de seguridad)
+
+Puedes acceder al contenedor y comprobar cosas manualmente:
+
+```bash
+docker exec -it <contenedor> bash
+# Dentro del contenedor:
+id                # Comprobar si corre como root
+cat /etc/os-release
+apt list --upgradable  # Si es Ubuntu/Debian
+netstat -tulnp         # Puertos abiertos
+ls -l /root            # Acceso a home de root
+ps aux                 # Procesos activos
+```
+Esto te permite auditar configuraciones, paquetes y permisos.
+
+---
+
+## 6. Recomendaciones y buenas prácticas de auditoría
+
+- Ejecuta auditorías antes y después de desplegar imágenes (shift-left security).
+- Integra Trivy, Dockle u otros en tus pipelines de CI/CD.
+- Audita también las configuraciones de Docker Compose, secretos y redes.
+- No des acceso de escritura al Docker socket a usuarios sin privilegios.
+- Centraliza reportes y planifica parches para vulnerabilidades detectadas.
+
+---
+
+## 7. Otros escáneres y métodos recomendados
+
+- **Clair:** Escáner de vulnerabilidades que puede integrarse con registries privados.
+- **Snyk, Grype:** Alternativas útiles, se pueden usar en CI o localmente.
+- **Análisis manual:** Accede a los contenedores y revisa manualmente configuraciones y software.
+
+---
+
+## 8. Auditoría automatizada y continua
+
+Lo ideal es programar auditorías periódicas con cron, o usarlas como etapa automática en tus pipelines de CI/CD.
+
+**Ejemplo de script simple (trivy todas las imágenes):**
+```bash
+docker images --format '{{.Repository}}:{{.Tag}}' | xargs -L1 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image
+```
+
+---
+
+> **Recuerda:** La auditoría de seguridad es un proceso continuo, no un evento único. Mantén tus imágenes y contenedores monitorizados, y actualiza siempre ante vulnerabilidades críticas.
 
