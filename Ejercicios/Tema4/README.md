@@ -32,25 +32,75 @@ Ves un JSON con detalles como: ID, nombre, tipo de driver, subred, puerta de enl
 
 ---
 
-## Ejercicio 3: Crea una red personalizada y conecta contenedores
+
+## Ejercicio 3: Conectividad entre contenedores en red por defecto y red personalizada
 
 **Planteamiento:**  
-Crea una red bridge llamada redtest y conecta dos contenedores Ubuntu a ella. Haz ping entre ellos por nombre.
+Comprueba si los contenedores pueden comunicarse entre sí usando el nombre de contenedor en la red por defecto (`bridge`) y en una red personalizada.
+
+---
+
+### 1. Prueba en la red por defecto (`bridge`)
+
+**Desarrollo:**
+```bash
+docker run -dit --name defecto1 ubuntu bash
+docker run -dit --name defecto2 ubuntu bash
+docker exec defecto1 apt-get update && docker exec defecto1 apt-get install -y iputils-ping
+docker exec defecto2 apt-get update && docker exec defecto2 apt-get install -y iputils-ping
+```
+
+**Desde defecto1 intenta hacer ping por nombre a defecto2:**
+```bash
+docker exec defecto1 ping -c 2 defecto2
+```
+
+**Desde defecto1, haz ping por IP a defecto2:**
+1. Descubre la IP de defecto2:
+    ```bash
+    docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' defecto2
+    ```
+2. Haz ping a esa IP:
+    ```bash
+    docker exec defecto1 ping -c 2 <IP_DE_DEFECTO2>
+    ```
+
+**Resolución:**  
+- **Ping por nombre:**  
+  Falla (`ping: defecto2: Name or service not known`).
+- **Ping por IP:**  
+  Funciona (hay respuesta).
+
+---
+
+### 2. Prueba en una red personalizada
 
 **Desarrollo:**
 ```bash
 docker network create redtest
-docker run -dit --name reduno --network redtest ubuntu bash
-docker run -dit --name reddos --network redtest ubuntu bash
-docker exec reduno apt-get update && docker exec reduno apt-get install -y iputils-ping
-docker exec reddos apt-get update && docker exec reddos apt-get install -y iputils-ping
-docker exec reduno ping -c 2 reddos
+docker run -dit --name personalizado1 --network redtest ubuntu bash
+docker run -dit --name personalizado2 --network redtest ubuntu bash
+docker exec personalizado1 apt-get update && docker exec personalizado1 apt-get install -y iputils-ping
+docker exec personalizado2 apt-get update && docker exec personalizado2 apt-get install -y iputils-ping
+```
+
+**Desde personalizado1, ping por nombre a personalizado2:**
+```bash
+docker exec personalizado1 ping -c 2 personalizado2
 ```
 
 **Resolución:**  
-El ping responde, los contenedores se comunican por nombre.
+- **Ping por nombre:**  
+  Funciona, los contenedores se resuelven correctamente por nombre.
+- **Ping por IP:**  
+  También funciona.
 
 ---
+
+**Conclusión:**  
+- **Red por defecto (`bridge`)**: los contenedores NO pueden resolverse por nombre, solo por IP.
+- **Red personalizada:** los contenedores SÍ pueden resolverse por nombre, facilitando la comunicación entre servicios.
+
 
 ## Ejercicio 4: Mapea un puerto y accede desde el host
 
@@ -240,4 +290,3 @@ docker network rm redtest redprivada redextra redA redB macvlan_demo
 ---
 
 > **¡Recuerda!** El ejercicio de macvlan puede necesitar adaptar la IP, el rango y la interfaz a tu entorno real, y requiere permisos de red en el host.
-
