@@ -1,4 +1,19 @@
- Limitar y forzar recursos en Docker
+# Índice de ejercicios
+
+- [Ejercicio 1: Limita la memoria RAM y fuerza OOM (Out-Of-Memory)](#ejercicio-1-limita-la-memoria-ram-y-fuerza-oom-out-of-memory)
+- [Ejercicio 2: Limita el uso de CPU y fuerza consumo](#ejercicio-2-limita-el-uso-de-cpu-y-fuerza-consumo)
+- [Ejercicio 3: Limita la cantidad de procesos y fuerza error de fork](#ejercicio-3-limita-la-cantidad-de-procesos-y-fuerza-error-de-fork)
+- [Ejercicio 4: Limita archivos abiertos y fuerza error de “too many open files”](#ejercicio-4-limita-archivos-abiertos-y-fuerza-error-de-too-many-open-files)
+- [Ejercicio 5: Limita la velocidad de escritura en disco (IO) y observa el efecto](#ejercicio-5-limita-la-velocidad-de-escritura-en-disco-io-y-observa-el-efecto)
+- [Ejercicio 6: Limita la red a 1mbits-y-comprueba-con-una-descarga](#ejercicio-6-limita-la-red-a-1mbits-y-comprueba-con-una-descarga)
+- [Ejercicio 7: Limita RAM y SWAP, y fuerza swap-out](#ejercicio-7-limita-ram-y-swap-y-fuerza-swap-out)
+- [Ejercicio 8: Limita CPU a un solo núcleo específico y comprueba afinidad](#ejercicio-8-limita-cpu-a-un-solo-núcleo-específico-y-comprueba-afinidad)
+
+---
+
+
+
+# Limitar y forzar recursos en Docker
 
 ---
 
