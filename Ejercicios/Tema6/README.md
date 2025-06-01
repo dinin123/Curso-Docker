@@ -173,3 +173,6 @@ docker run --name cpu_affinity --cpuset-cpus="0" ubuntu bash -c "apt update && a
 **Resolución:**  
 El contenedor nunca usa otros cores; sólo el core asignado.
 
+
+
+
