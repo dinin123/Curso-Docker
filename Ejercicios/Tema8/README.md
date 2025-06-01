@@ -243,7 +243,7 @@ docker rm -f test_nginx
 ---
 
 
-#Ejercicio 3.  Auditoría de seguridad de contenedores Docker desde otro contenedor
+# Ejercicio 3.  Auditoría de seguridad de contenedores Docker desde otro contenedor
 
 ---
 
