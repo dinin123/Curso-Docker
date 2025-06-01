@@ -224,31 +224,7 @@ Ves qué redes se han eliminado y tu sistema queda más ordenado.
 
 ---
 
-## Ejercicio 11: Crea y usa una red Macvlan (ejemplo avanzado)
-
-**Planteamiento:**  
-Crea una red macvlan para que un contenedor obtenga una IP real en tu LAN, permitiendo que otros dispositivos de la red accedan directamente al contenedor.
-
-**Nota:**  
-Debes saber tu interfaz de red (por ejemplo, `eth0`) y el rango de IPs de tu red local. ¡Esto requiere permisos de administrador y puede interferir con la red si no lo configuras bien!
-
-**Desarrollo:**
-```bash
-docker network create -d macvlan   --subnet=192.168.1.0/24   --gateway=192.168.1.1   -o parent=eth0 macvlan_demo
-```
-
-```bash
-docker run -d --name nginx_macvlan --network macvlan_demo --ip 192.168.1.50 nginx
-```
-
-Desde otro dispositivo en la misma red, prueba acceder a http://192.168.1.50
-
-**Resolución:**  
-La IP 192.168.1.50 es accesible desde la LAN. El contenedor es como "un servidor físico" en la red.
-
----
-
-## Ejercicio 12: (Opcional) Simula comunicación entre diferentes redes
+## Ejercicio 11: (Opcional) Simula comunicación entre diferentes redes
 
 **Planteamiento:**  
 Crea dos redes personalizadas y conecta dos contenedores a ambas, simulando un "router" Docker entre subredes.
@@ -289,4 +265,3 @@ docker network rm redtest redprivada redextra redA redB macvlan_demo
 
 ---
 
-> **¡Recuerda!** El ejercicio de macvlan puede necesitar adaptar la IP, el rango y la interfaz a tu entorno real, y requiere permisos de red en el host.
