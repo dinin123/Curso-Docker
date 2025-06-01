@@ -1,14 +1,7 @@
 # Curso de Docker
 
-Una introducción a los conceptos básicos del uso de Docker.
+Una introducción a los conceptos básicos de Docker y Docker Compose..
 
-### Antes de comenzar...
-
-1. [Instala Docker en tu máquina.](https://docs.docker.com/engine/installation/)
-
-### Una vez que estés listo...
-
-Sigue la [presentación](https://donde.me) y abre cada ejercicio cuando se te indique.
 
 ### Ejercicios Básicos
 
