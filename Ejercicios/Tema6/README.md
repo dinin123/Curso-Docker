@@ -292,3 +292,133 @@ Normalmente, tmpfs será el más rápido, seguido de named volume y luego bind m
 
 ---
 
+## Ejercicio 12: Stack WordPress escalable + MySQL + phpMyAdmin + HAProxy como balanceador en red personalizada
+
+**Planteamiento:**  
+Despliega un stack compuesto por MySQL, WordPress (inicialmente 2 réplicas, escalable hasta 5), phpMyAdmin y HAProxy como balanceador en el puerto 8080, todo unido por una red personalizada. HAProxy debe estar preconfigurado para balancear hasta 5 WordPress.
+
+---
+
+### docker-compose.yml
+
+```yaml
+version: "3.8"
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: wppassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+    networks:
+      - wpnet
+
+  wordpress:
+    image: wordpress:latest
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wppassword
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wp_data:/var/www/html
+    networks:
+      - wpnet
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    ports:
+      - "8089:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: rootpassword
+    networks:
+      - wpnet
+
+  haproxy:
+    image: haproxy:2.9
+    depends_on:
+      - wordpress
+    ports:
+      - "8080:80"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    networks:
+      - wpnet
+
+volumes:
+  db_data:
+  wp_data:
+
+networks:
+  wpnet:
+```
+
+---
+
+### haproxy.cfg (colócalo en el mismo directorio que el docker-compose.yml)
+
+```haproxy
+global
+    daemon
+    maxconn 256
+
+defaults
+    mode http
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+
+frontend http-in
+    bind *:80
+    default_backend wordpress-backend
+
+backend wordpress-backend
+    balance roundrobin
+    option httpchk HEAD /
+    # Puedes definir hasta 5 servidores
+    server wordpress1 wordpress_1:80 check
+    server wordpress2 wordpress_2:80 check
+    server wordpress3 wordpress_3:80 check
+    server wordpress4 wordpress_4:80 check
+    server wordpress5 wordpress_5:80 check
+```
+
+---
+
+### Cómo usarlo
+
+1. **Crea el archivo `docker-compose.yml` y el archivo `haproxy.cfg` en la misma carpeta.**
+2. **Arranca el stack (2 WordPress por defecto):**
+   ```bash
+   docker compose up -d --scale wordpress=2
+   ```
+3. **Accede a WordPress a través del balanceador:**
+   - http://localhost:8080 (HAProxy reenvía a los WordPress disponibles)
+4. **Accede a phpMyAdmin:**
+   - http://localhost:8089
+   - Usuario: `root`  Contraseña: `rootpassword`
+
+**Para escalar WordPress:**
+```bash
+docker compose up -d --scale wordpress=5
+```
+HAProxy automáticamente detectará y balanceará hasta 5 instancias de WordPress (`wordpress_1`, `wordpress_2`, etc).
+
+---
+
+**Resolución:**  
+- El tráfico que llega por el puerto 8080 del host es balanceado entre los WordPress activos.
+- Puedes aumentar o disminuir réplicas con `docker compose up -d --scale wordpress=N`.
+- phpMyAdmin y la base de datos funcionan igual que antes.
+- El balanceador HAProxy te da alta disponibilidad y distribución de carga.
+
