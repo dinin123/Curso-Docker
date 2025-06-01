@@ -1,4 +1,4 @@
-# Práctica: Instalación de Docker en Rocky Linux 9
+# Instalación de Docker en Rocky Linux 9
 
 En esta práctica aprenderás a instalar Docker en un sistema operativo Rocky Linux 9. Docker es una plataforma para desarrollar, enviar y ejecutar aplicaciones dentro de contenedores.
 
@@ -76,7 +76,43 @@ Ejecuta el siguiente comando para verificar que Docker está instalado correctam
 sudo docker run hello-world
 ```
 
-Este comando descarga una imagen de prueba y la ejecuta en un contenedor. Si todo está correctamente instalado, verás un mensaje de bienvenida.
+Este comando descarga una imagen de prueba y la ejecuta en un contenedor. Si todo está correctamente instalado, verás un mensaje de bienvenida similar a este:
+
+```bash
+$ docker run hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+```
+
+### ¿Qué significa esta salida?
+
+Este mensaje no solo confirma que Docker está instalado correctamente, sino que **explica de forma clara cómo funciona Docker internamente**. Los pasos que describe son esenciales:
+
+1. **El cliente Docker se comunica con el demonio Docker**: demuestra que los componentes principales están funcionando.
+2. **El demonio descarga una imagen desde Docker Hub**: prueba que tienes acceso a internet y a los repositorios.
+3. **Se crea y ejecuta un contenedor a partir de esa imagen**: comprueba que el sistema puede crear contenedores.
+4. **La salida del contenedor llega a tu terminal**: verifica que el flujo completo funciona.
+
+>  Esta simple prueba resume el ciclo de vida básico de un contenedor: *descargar imagen → crear contenedor → ejecutar → mostrar resultado*. Es una excelente primera validación del entorno.
 
 ---
 
@@ -134,28 +170,28 @@ Para ejecutar contenedores, primero necesitamos descargar algunas imágenes.
 
     También puedes encontrar imágenes en línea en [DockerHub](https://hub.docker.com/).
 
-    Ejecuta `docker pull ubuntu:16.04` para descargar una imagen de Ubuntu 16.04 desde DockerHub.
+    Ejecuta `docker pull ubuntu:18.04` para descargar una imagen de Ubuntu 16.04 desde DockerHub.
 
 3. También podemos descargar diferentes versiones de la misma imagen.
 
-    Ejecuta `docker pull ubuntu:16.10` para descargar la imagen de Ubuntu 16.10.
+    Ejecuta `docker pull ubuntu:24.04` para descargar la imagen de Ubuntu 16.10.
 
     Luego, si ejecutamos `docker images` nuevamente, deberíamos ver:
 
     ```
     REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-    ubuntu              16.10               ...                 ...                 ...
-    ubuntu              16.04               ...                 ...                 ...
+    ubuntu              18.04               ...                 ...                 ...
+    ubuntu              24.04               ...                 ...                 ...
     ```
 
 4. Con el tiempo, tu máquina puede acumular muchas imágenes, así que conviene eliminar las que no se usan.
 
-    Ejecuta `docker rmi <IMAGE ID>` para eliminar la imagen de Ubuntu 16.10.
+    Ejecuta `docker rmi <IMAGE ID>` para eliminar la imagen de Ubuntu 18.04.
 
     También puedes eliminar imágenes por etiqueta o por ID parcial:
 
      - `docker rmi 31`
-     - `docker rmi ubuntu:16.10`
+     - `docker rmi ubuntu:18.04`
 
     Un atajo útil para eliminar todas las imágenes del sistema es:
 
@@ -165,12 +201,12 @@ Para ejecutar contenedores, primero necesitamos descargar algunas imágenes.
 
 ### Ejecutar nuestro contenedor
 
-Usando la imagen de Ubuntu 16.04 que descargamos, podemos ejecutar nuestro primer contenedor.
+Usando la imagen de Ubuntu 24.04 que descargamos, podemos ejecutar nuestro primer contenedor.
 
 1. Ejecutemos un ejemplo sencillo:
 
     ```
-    $ docker run ubuntu:16.04 /bin/echo '¡Hola mundo!'
+    $ docker run ubuntu:24.04 /bin/echo '¡Hola mundo!'
     ¡Hola mundo!
     ```
 
@@ -189,7 +225,7 @@ Usando la imagen de Ubuntu 16.04 que descargamos, podemos ejecutar nuestro prime
 3. Ejecutemos algo más interactivo:
 
     ```
-    $ docker run -it ubuntu:16.04 /bin/bash
+    $ docker run -it ubuntu:24.04 /bin/bash
     root@<container_id>:/# 
     ```
 
@@ -198,7 +234,7 @@ Usando la imagen de Ubuntu 16.04 que descargamos, podemos ejecutar nuestro prime
 4. Para evitar que el terminal quede adjunto al contenedor, usa `-d`:
 
     ```
-    $ docker run -d ubuntu:16.04 /bin/sleep 3600
+    $ docker run -d ubuntu:24.04 /bin/sleep 3600
     ```
 
 5. Para acceder a un contenedor en ejecución, usa `docker exec`:
@@ -232,7 +268,7 @@ Usando la imagen de Ubuntu 16.04 que descargamos, podemos ejecutar nuestro prime
     Para eliminar automáticamente un contenedor tras su ejecución:
 
     ```
-    $ docker run --rm ubuntu:16.04 /bin/echo '¡Hola y adiós!'
+    $ docker run --rm ubuntu:24.04 /bin/echo '¡Hola y adiós!'
     ```
 
 ---
