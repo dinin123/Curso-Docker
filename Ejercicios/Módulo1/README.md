@@ -1,3 +1,103 @@
+### Práctica: Instalación de Docker en Rocky Linux 9
+
+En esta práctica aprenderás a instalar Docker en un sistema operativo Rocky Linux 9. Docker es una plataforma para desarrollar, enviar y ejecutar aplicaciones dentro de contenedores.
+
+## Requisitos previos
+
+- Tener acceso a una máquina con Rocky Linux 9 (física o virtual).
+- Privilegios de superusuario (root) o acceso a `sudo`.
+
+---
+
+## Paso 1: Actualizar el sistema
+
+Antes de comenzar, es recomendable actualizar los paquetes del sistema.
+
+```bash
+sudo dnf update -y
+```
+
+---
+
+## Paso 2: Instalar dependencias necesarias
+
+Instala las utilidades que Docker necesita para funcionar correctamente:
+
+```bash
+sudo dnf install -y dnf-utils device-mapper-persistent-data lvm2
+```
+
+---
+
+## Paso 3: Añadir el repositorio oficial de Docker
+
+Agrega el repositorio de Docker CE (Community Edition):
+
+```bash
+sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+```
+
+Aunque el repositorio es para CentOS, también es compatible con Rocky Linux.
+
+---
+
+## Paso 4: Instalar Docker Engine
+
+Instala Docker utilizando el repositorio que acabas de configurar:
+
+```bash
+sudo dnf install -y docker-ce docker-ce-cli containerd.io
+```
+
+---
+
+## Paso 5: Habilitar e iniciar el servicio Docker
+
+Activa e inicia el servicio de Docker:
+
+```bash
+sudo systemctl enable docker
+sudo systemctl start docker
+```
+
+Comprueba que el servicio esté funcionando:
+
+```bash
+sudo systemctl status docker
+```
+
+---
+
+## Paso 6: Verificar la instalación
+
+Ejecuta el siguiente comando para verificar que Docker está instalado correctamente:
+
+```bash
+sudo docker run hello-world
+```
+
+Este comando descarga una imagen de prueba y la ejecuta en un contenedor. Si todo está correctamente instalado, verás un mensaje de bienvenida.
+
+---
+
+## Paso 7 (Opcional): Usar Docker sin sudo
+
+Para ejecutar Docker sin anteponer `sudo`:
+
+```bash
+sudo usermod -aG docker $USER
+```
+
+Después de ejecutar este comando, **cierra la sesión y vuelve a iniciarla** para que los cambios surtan efecto.
+
+---
+
+## Conclusión
+
+Has instalado correctamente Docker en Rocky Linux 9. A partir de ahora puedes empezar a crear y gestionar contenedores con facilidad. En prácticas posteriores aprenderás a usar imágenes, redes y volúmenes con Docker.
+
+
+
 # Ejercicio 1: Ejecutar contenedores
 
 En este ejercicio, aprenderemos lo básico sobre cómo descargar imágenes, iniciar, detener y eliminar contenedores.
