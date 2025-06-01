@@ -1,247 +1,223 @@
- Módulo 6: Administración avanzada y solución de problemas
+# Ejercicios de Logs y Eventos en Docker
 
 ---
 
-## Ejercicio 1: Limita recursos de CPU y memoria en un contenedor
+## Ejercicio 1: Visualiza los logs básicos de un contenedor
 
 **Planteamiento:**  
-Lanza un contenedor de NGINX con límite de 256MB de RAM y 0.5 CPUs.
+Lanza un contenedor NGINX y revisa sus logs.
 
 **Desarrollo:**
 ```bash
-docker run -d --name nginx_limitado --memory="256m" --cpus="0.5" nginx
-docker stats nginx_limitado
+docker run -d --name nginx_logs -p 8080:80 nginx
+docker logs nginx_logs
 ```
-
 **Resolución:**  
-Verifica que el uso de RAM y CPU nunca supera los límites asignados.
+Ves las peticiones recibidas y mensajes de acceso del servidor web.
 
 ---
 
-## Ejercicio 2: Cambia la política de reinicio de un contenedor
+## Ejercicio 2: Sigue los logs en tiempo real y haz una prueba
 
 **Planteamiento:**  
-Haz que un contenedor de NGINX se reinicie siempre que falle o al reiniciar el host.
+Abre los logs en modo seguimiento y haz peticiones con curl para verlas aparecer.
 
 **Desarrollo:**
 ```bash
-docker run -d --name nginx_auto --restart=always nginx
-docker ps -a --filter "name=nginx_auto"
+docker logs -f nginx_logs
+# En otra terminal
+curl http://localhost:8080
+curl http://localhost:8080/loquesea
 ```
-
 **Resolución:**  
-La columna STATUS muestra si el contenedor se reinicia tras pararlo o reiniciar Docker.
+Cada acceso aparece en tiempo real en la salida de logs.
 
 ---
 
-## Ejercicio 3: Visualiza logs en tiempo real y gestiona la salida
+## Ejercicio 3: Visualiza solo los errores del contenedor
 
 **Planteamiento:**  
-Lanza un contenedor que escriba la fecha en un bucle y observa sus logs en directo.
+Lanza un contenedor con una app que imprime errores y filtra solo los mensajes de error.
 
 **Desarrollo:**
 ```bash
-docker run -d --name reloj busybox sh -c "while true; do date; sleep 1; done"
-docker logs -f reloj
+docker run --name error_demo --rm alpine sh -c 'echo OK; echo "ERROR: Falla grave" >&2; sleep 3'
+docker logs error_demo 2>&1 | grep ERROR
 ```
-
 **Resolución:**  
-Ves la hora actualizándose cada segundo.
+Solo ves las líneas con `ERROR`, útil para detectar fallos.
 
 ---
 
-## Ejercicio 4: Configura el driver de logs y comprueba la rotación
+## Ejercicio 4: Revisa los logs de arranque fallido
 
 **Planteamiento:**  
-Lanza un contenedor con el driver de logs json-file y límite de tamaño de log a 1MB, 2 archivos rotativos.
+Lanza un contenedor con un comando incorrecto y revisa los logs para ver el error.
 
 **Desarrollo:**
 ```bash
-docker run -d --name logs_limited --log-opt max-size=1m --log-opt max-file=2 busybox sh -c "while true; do echo 'Log rotando...'; sleep 0.01; done"
-# Espera 1-2 minutos y para el contenedor:
-docker stop logs_limited
-docker logs logs_limited
+docker run --name fail_start alpine comando_invalido || true
+docker logs fail_start
 ```
-
 **Resolución:**  
-El log nunca ocupa más de 2MB en total. Los archivos rotan automáticamente.
+En los logs aparece el mensaje de error: `executable file not found in $PATH`.
 
 ---
 
-## Ejercicio 5: Realiza y restaura un backup de volumen
+## Ejercicio 5: Obtén logs con marcas de tiempo y líneas recientes
 
 **Planteamiento:**  
-Haz backup de un volumen, bórralo y recupéralo usando Alpine y tar.
+Consulta los últimos 5 eventos de log y muestra marcas de tiempo.
 
 **Desarrollo:**
 ```bash
-docker volume create backupvol
-docker run --rm -v backupvol:/data ubuntu bash -c "echo 'backup ok' > /data/info.txt"
-docker run --rm -v backupvol:/data -v $(pwd):/backup alpine tar czvf /backup/backupvol.tar.gz -C /data .
-docker volume rm backupvol
-docker volume create backupvol
-docker run --rm -v backupvol:/data -v $(pwd):/backup alpine tar xzvf /backup/backupvol.tar.gz -C /data
-docker run --rm -v backupvol:/data ubuntu cat /data/info.txt
+docker logs -t --tail 5 nginx_logs
 ```
-
 **Resolución:**  
-Recuperas el archivo info.txt con el mensaje original.
+Ves solo las últimas 5 líneas de log, cada una con su timestamp.
 
 ---
 
-## Ejercicio 6: Usa healthchecks para controlar el estado
+## Ejercicio 6: Consulta los logs de un periodo concreto
 
 **Planteamiento:**  
-Configura un healthcheck en un contenedor MySQL y observa su estado de salud.
+Obtén logs de los últimos 2 minutos para investigar un incidente reciente.
 
 **Desarrollo:**
 ```bash
-docker run -d --name mysql_hc -e MYSQL_ROOT_PASSWORD=1234 --health-cmd='mysqladmin ping -h localhost -p1234' --health-interval=10s --health-retries=3 mysql
-docker inspect --format='{{json .State.Health}}' mysql_hc
+docker logs --since 2m nginx_logs
 ```
-
 **Resolución:**  
-El estado Health pasa de starting a healthy cuando el servidor MySQL responde.
+Solo ves los logs generados en los últimos 2 minutos.
 
 ---
 
-## Ejercicio 7: Monitoriza recursos en tiempo real
+## Ejercicio 7: Visualiza eventos Docker en tiempo real
 
 **Planteamiento:**  
-Lanza dos contenedores y observa su consumo con docker stats.
-
-**Desarrollo:**
-```bash
-docker run -d --name stress1 busybox sh -c "while true; do true; done"
-docker run -d --name stress2 busybox sh -c "while true; do true; done"
-docker stats
-```
-
-**Resolución:**  
-Ves las columnas de CPU, memoria, red y disco para ambos contenedores.
-
----
-
-## Ejercicio 8: Inspecciona eventos de Docker en vivo
-
-**Planteamiento:**  
-Observa en directo los eventos del demonio Docker al arrancar y parar contenedores.
+Sigue los eventos del sistema Docker para ver creación, parada y eliminación de contenedores.
 
 **Desarrollo:**
 ```bash
 docker events
-# (En otra terminal, ejecuta contenedores o deténlos para ver los eventos generados)
+# En otra terminal:
+docker run --rm --name test1 alpine echo hola
+docker rm -f nginx_logs
 ```
-
 **Resolución:**  
-Ves líneas en vivo del tipo: container start, container stop, etc.
+Ves líneas del tipo `container start`, `container die`, `container destroy`, etc.
 
 ---
 
-## Ejercicio 9: Diagnostica un error de imagen inexistente
+## Ejercicio 8: Filtra eventos solo de un contenedor concreto
 
 **Planteamiento:**  
-Intenta lanzar un contenedor con una imagen que no existe y analiza el error.
+Observa los eventos solo del contenedor nginx_logs.
 
 **Desarrollo:**
 ```bash
-docker run --name failme noexiste:1.0
-docker ps -a --filter "name=failme"
-docker logs failme
+docker events --filter container=nginx_logs
 ```
-
 **Resolución:**  
-docker logs failme muestra un error de “manifest for noexiste:1.0 not found”.
+Solo aparecen eventos relacionados con ese contenedor (start, stop, die, etc).
 
 ---
 
-## Ejercicio 10: Limpia todos los recursos no utilizados
+## Ejercicio 9: Guarda los logs de un contenedor a un archivo para auditoría
 
 **Planteamiento:**  
-Libera espacio eliminando contenedores, redes, imágenes y volúmenes que no se usen.
+Exporta los logs del contenedor nginx_logs a un fichero local, con timestamp.
 
 **Desarrollo:**
 ```bash
-docker system prune -af --volumes
+docker logs nginx_logs > logs_nginx_$(date +%F_%H%M%S).log
 ```
-
 **Resolución:**  
-El comando muestra cuánto espacio se ha liberado y el sistema Docker queda limpio.
+Tienes un archivo en disco con todos los logs para revisarlos o archivarlos.
 
 ---
 
-## Ejercicio 11: Inspecciona la configuración de una red y de un contenedor
+## Ejercicio 10: Audita los eventos del sistema durante un periodo
 
 **Planteamiento:**  
-Consulta toda la información de red, volúmenes y configuración de un contenedor en formato JSON.
+Guarda todos los eventos Docker ocurridos durante los últimos 5 minutos en un fichero para análisis.
 
 **Desarrollo:**
 ```bash
-docker inspect nginx_limitado
+docker events --since 5m > eventos_recientes.log
 ```
-
 **Resolución:**  
-Ves la configuración completa, incluyendo redes conectadas, puertos, rutas, mounts y mucho más.
+El archivo `eventos_recientes.log` contiene una lista detallada de los eventos recientes del daemon Docker.
 
 ---
 
-## Ejercicio 12: Escanea vulnerabilidades en imágenes Docker
+## Ejercicio 11: Configura y revisa logs en formato JSON
 
 **Planteamiento:**  
-Analiza una imagen Docker en busca de vulnerabilidades usando Trivy (requiere instalación previa).
+Cambia el formato de logs de un contenedor a JSON y analiza la salida.
 
 **Desarrollo:**
 ```bash
-sudo dnf install trivy     # O el gestor correspondiente
-trivy image nginx
+docker run -d --name json_logger --log-driver=json-file --log-opt format=json nginx
+docker logs json_logger
 ```
-
 **Resolución:**  
-Obtienes un listado de posibles vulnerabilidades de paquetes y configuraciones de la imagen.
+Cada línea del log aparece en formato JSON, útil para análisis automatizado o integración con herramientas externas.
 
 ---
 
-## Ejercicio 13: Comprueba la rotación de logs del daemon Docker con logrotate
+## Ejercicio 12: Redirecciona logs de Docker a syslog (y verifícalo)
 
 **Planteamiento:**  
-Asegura que los logs de Docker se roten automáticamente para no llenar el disco.
-
-**Desarrollo:**
-1. Comprueba el archivo `/etc/logrotate.d/docker-container`
-2. Fuerza rotación:
-```bash
-sudo logrotate -f /etc/logrotate.d/docker-container
-```
-3. Verifica que aparecen archivos `.gz` de logs antiguos.
-
-**Resolución:**  
-Los logs rotan, se guardan como archivos comprimidos y no saturan el disco.
-
----
-
-## Ejercicio 14: Debug avanzado de procesos dentro de un contenedor (strace)
-
-**Planteamiento:**  
-Analiza las llamadas a sistema de un proceso dentro de un contenedor con `strace` para troubleshooting avanzado.
+Arranca un contenedor cuyo log se envía a syslog, consulta luego los logs del sistema.
 
 **Desarrollo:**
 ```bash
-docker run -it --name debug_test ubuntu bash
-apt-get update && apt-get install -y strace
-strace ls /
-exit
-docker rm debug_test
+docker run -d --name syslog_test --log-driver=syslog nginx
+# Verifica en el host:
+sudo journalctl -t docker | tail -20
 ```
-
 **Resolución:**  
-Ves todas las llamadas al sistema que hace el comando `ls /`.
+En los logs del sistema aparecen mensajes de acceso/errores del contenedor.
 
 ---
 
-## Ejercicio 15: Limpieza general
+## Ejercicio 13: Debug de contenedores con logs de aplicaciones
 
-```bash
-docker rm -f nginx_limitado nginx_auto reloj logs_limited mysql_hc stress1 stress2 failme debug_test
-docker volume rm backupvol
+**Planteamiento:**  
+Lanza un contenedor de Python con una app que escribe logs a stdout y stderr, observa ambos.
+
+**Desarrollo:**
+Crea un archivo llamado `app.py`:
+```python
+import sys
+print("INFO: Esto es un log estándar")
+print("ERROR: Esto es un log de error", file=sys.stderr)
 ```
+Ejecuta el contenedor:
+```bash
+docker run --rm -v $(pwd)/app.py:/app.py python:3 bash -c "python /app.py"
+```
+**Resolución:**  
+Ves ambos tipos de mensajes en el log del contenedor. Puedes filtrar con `grep ERROR` para ver solo errores.
+
+---
+
+## Ejercicio 14: Audita acceso “exec” en contenedores para detectar intrusiones
+
+**Planteamiento:**  
+Monitorea si alguien ejecuta comandos dentro de un contenedor mediante `docker exec`.
+
+**Desarrollo:**
+```bash
+docker events --filter event=exec_create --filter event=exec_start --since 1h
+```
+En otra terminal, haz:
+```bash
+docker exec -it nginx_logs bash
+```
+**Resolución:**  
+En los eventos aparecen registros de la creación y ejecución del comando “exec”, lo que permite auditar accesos sospechosos.
+
+---
 
