@@ -2,7 +2,7 @@
 
 ---
 
-## Ejercicio 1: Crea y usa un volumen nombrado
+## Ejercicio 1: Crea y usa un volumen 
 
 **Planteamiento:**  
 Crea un volumen llamado `volumen_prueba`, úsalo en un contenedor Ubuntu y comprueba que puedes guardar datos en él.
@@ -217,6 +217,61 @@ docker run -it --rm -v vol2:/data2 ubuntu cat /data2/dos.txt
 Cada archivo está en su volumen correspondiente y persiste de forma independiente.
 
 ---
+
+## Ejercicio 11: Compara rendimiento de distintos tipos de volúmenes en Docker
+
+**Planteamiento:**  
+Crea y monta en contenedores los tres tipos de volumen de Docker (named volume, bind mount y tmpfs). Realiza un test de escritura en cada uno para comparar velocidades.
+
+**Desarrollo:**
+
+### 1. Crea las rutas necesarias y el archivo de test
+
+```bash
+mkdir -p ~/docker_bench
+echo "Benchmark de volúmenes Docker" > ~/docker_bench/prueba.txt
+```
+
+### 2. Prueba con **named volume** (volumen Docker gestionado)
+
+```bash
+docker volume create test_named
+docker run --rm -v test_named:/testdir ubuntu bash -c "dd if=/dev/zero of=/testdir/speed_test bs=1M count=512 oflag=dsync"
+docker volume rm test_named
+```
+
+### 3. Prueba con **bind mount** (carpeta del host)
+
+```bash
+docker run --rm -v ~/docker_bench:/testdir ubuntu bash -c "dd if=/dev/zero of=/testdir/speed_test bs=1M count=512 oflag=dsync"
+```
+
+### 4. Prueba con **tmpfs** (RAM)
+
+```bash
+docker run --rm --tmpfs /testdir:rw,size=600m ubuntu bash -c "dd if=/dev/zero of=/testdir/speed_test bs=1M count=512 oflag=dsync"
+```
+
+### 5. Interpreta los resultados
+
+Observa el tiempo total reportado por el comando `dd` (última línea, algo como “x MB/s”).  
+Suele observarse:
+- **tmpfs** (RAM): velocidad máxima.
+- **named volume**: muy rápido, dependiente de Docker y el sistema de archivos.
+- **bind mount**: similar o algo más lento, depende del disco y del sistema anfitrión.
+
+**Resolución:**  
+Registra los resultados de cada test para comparar.  
+Ejemplo de salida esperada:
+
+```
+536870912 bytes (537 MB, 512 MiB) copied, 0.692443 s, 775 MB/s  # tmpfs (muy rápido)
+536870912 bytes (537 MB, 512 MiB) copied, 2.40977 s, 223 MB/s   # named volume
+536870912 bytes (537 MB, 512 MiB) copied, 3.10784 s, 172 MB/s   # bind mount
+```
+
+> Nota: Los resultados dependen del hardware y la carga del host.
+
 
 ## Limpieza general
 
