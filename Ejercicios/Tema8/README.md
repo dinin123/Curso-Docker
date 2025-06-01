@@ -1,3 +1,13 @@
+# Índice de ejercicios
+
+- [Ejercicio 1: Contenedor SSH seguro con Alpine, solo acceso clave RSA y usuario sudo](#ejercicio-1-contenedor-ssh-seguro-con-alpine-solo-acceso-clave-rsa-y-usuario-sudo)
+- [Ejercicio 2: Simulación y recuperación ante fallo grave en Docker (falta de directorio crítico)](#ejercicio-2-simulación-y-recuperación-ante-fallo-grave-en-docker-falta-de-directorio-crítico)
+- [Ejercicio 3.  Auditoría de seguridad de contenedores Docker desde otro contenedor](#ejercicio-3--auditoría-de-seguridad-de-contenedores-docker-desde-otro-contenedor)
+
+---
+
+
+
 # Ejercicio 1: Contenedor SSH seguro con Alpine, solo acceso clave RSA y usuario sudo
 
 ## 1. Prepara la clave pública
