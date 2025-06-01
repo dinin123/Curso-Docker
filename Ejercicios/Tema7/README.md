@@ -1,3 +1,18 @@
+## Índice – Módulo 5: Orquestación básica con Docker Compose
+
+1. [Ejercicio 1: Crea un docker-compose.yml mínimo y lanza un servicio web](#ejercicio-1-crea-un-docker-composeyml-mínimo-y-lanza-un-servicio-web)
+2. [Ejercicio 2: Añade una base de datos y una red personalizada](#ejercicio-2-añade-una-base-de-datos-y-una-red-personalizada)
+3. [Ejercicio 3: Usa volúmenes persistentes para la base de datos](#ejercicio-3-usa-volúmenes-persistentes-para-la-base-de-datos)
+4. [Ejercicio 4: Modifica la página web desde el host usando bind mount](#ejercicio-4-modifica-la-página-web-desde-el-host-usando-bind-mount)
+5. [Ejercicio 5: Usa variables de entorno externas en Compose](#ejercicio-5-usa-variables-de-entorno-externas-en-compose)
+6. [Ejercicio 6: Escala el servicio web y observa los resultados](#ejercicio-6-escala-el-servicio-web-y-observa-los-resultados)
+7. [Ejercicio 7: Usa depends_on para el orden de arranque](#ejercicio-7-usa-depends_on-para-el-orden-de-arranque)
+8. [Ejercicio 8: Añade un healthcheck al servicio de base de datos](#ejercicio-8-añade-un-healthcheck-al-servicio-de-base-de-datos)
+9. [Ejercicio 9: Añade un servicio adicional solo para desarrollo](#ejercicio-9-añade-un-servicio-adicional-solo-para-desarrollo)
+10. [Ejercicio 10: Limpia todos los recursos de Compose](#ejercicio-10-limpia-todos-los-recursos-de-compose)
+11. [Ejercicio 11: Orquesta y mide el rendimiento de acceso a disco en diferentes servicios](#ejercicio-11-orquesta-y-mide-el-rendimiento-de-acceso-a-disco-en-diferentes-servicios)
+12. [Ejercicio 12: Stack WordPress escalable + MySQL + phpMyAdmin + HAProxy como balanceador en red personalizada](#ejercicio-12-stack-wordpress-escalable--mysql--phpmyadmin--haproxy-como-balanceador-en-red-personalizada)
+
 
 # Módulo 5: Orquestación básica con Docker Compose
 
