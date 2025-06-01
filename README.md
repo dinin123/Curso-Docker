@@ -10,5 +10,5 @@ Una introducción a los conceptos básicos de Docker y Docker Compose..
 3. [Módulo 3 - Gestión de Volúmenes](https://github.com/dinin123/Curso-Docker/blob/main/Ejercicios/Tema3/README.md)
 4. [Módulo 4 - Gestión de Redes](https://github.com/dinin123/Curso-Docker/blob/main/Ejercicios/Tema4/README.md)
 5. [Módulo 5 - Docker Compose](https://github.com/dinin123/Curso-Docker/blob/main/Ejercicios/Tema5/README.md)
-6. [Módulo 6 - Opcionales](https://github.com/dinin123/Curso-Docker/blob/main/Ejercicios/Tema6/README.md)
+6. [Módulo 6 - Prácticas Adicionales](https://github.com/dinin123/Curso-Docker/blob/main/Ejercicios/Tema6/README.md)
 
