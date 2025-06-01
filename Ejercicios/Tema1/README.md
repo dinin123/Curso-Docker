@@ -1,4 +1,4 @@
-# Índice de contenidos
+# Instalación de Docker en Rocky Linux 9 y Ejercicios básicos:  Índice de contenidos
 
 - [Requisitos previos](#requisitos-previos)
 - [Paso 1: Actualizar el sistema](#paso-1-actualizar-el-sistema)
@@ -12,10 +12,6 @@
 - [Ejercicio 1: Ejecutar contenedores](#ejercicio-1-ejecutar-contenedores)
 
 ---
-
-
-
-# Instalación de Docker en Rocky Linux 9 y Ejercicios básicos
 
 En esta práctica aprenderás a instalar Docker en un sistema operativo Rocky Linux 9. Docker es una plataforma para desarrollar, enviar y ejecutar aplicaciones dentro de contenedores.
 

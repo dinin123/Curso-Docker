@@ -1,4 +1,4 @@
-# Índice de ejercicios
+# Redes en Docker: Índice de ejercicios
 
 - [Ejercicio 1: Lista redes existentes](#ejercicio-1-lista-redes-existentes)
 - [Ejercicio 2: Inspecciona una red](#ejercicio-2-inspecciona-una-red)
@@ -12,12 +12,6 @@
 - [Ejercicio 10: Limpia redes no usadas](#ejercicio-10-limpia-redes-no-usadas)
 - [Ejercicio 11: (Opcional) Simula comunicación entre diferentes redes](#ejercicio-11-opcional-simula-comunicación-entre-diferentes-redes)
 - [Limpieza general](#limpieza-general)
-
----
-
-
-
-# Redes en Docker
 
 ---
 

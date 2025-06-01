@@ -1,4 +1,4 @@
-# Índice de ejercicios
+# Logs y Eventos en Docker: Índice de ejercicios
 
 - [Ejercicio 1: Visualiza los logs básicos de un contenedor](#ejercicio-1-visualiza-los-logs-básicos-de-un-contenedor)
 - [Ejercicio 2: Sigue los logs en tiempo real y haz una prueba](#ejercicio-2-sigue-los-logs-en-tiempo-real-y-haz-una-prueba)
@@ -14,11 +14,6 @@
 - [Ejercicio 12: Redirecciona logs de Docker a syslog (y verifícalo)](#ejercicio-12-redirecciona-logs-de-docker-a-syslog-y-verifícalo)
 - [Ejercicio 13: Debug de contenedores con logs de aplicaciones](#ejercicio-13-debug-de-contenedores-con-logs-de-aplicaciones)
 - [Ejercicio 14: Audita acceso “exec” en contenedores para detectar intrusiones](#ejercicio-14-audita-acceso-exec-en-contenedores-para-detectar-intrusiones)
-
----
-
-
-#Logs y Eventos en Docker
 
 ---
 

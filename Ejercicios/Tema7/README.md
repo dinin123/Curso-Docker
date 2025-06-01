@@ -1,4 +1,4 @@
-## Índice – Módulo 5: Orquestación básica con Docker Compose
+# Orquestación básica con Docker Compose:  Índice de ejercicios
 
 1. [Ejercicio 1: Crea un docker-compose.yml mínimo y lanza un servicio web](#ejercicio-1-crea-un-docker-composeyml-mínimo-y-lanza-un-servicio-web)
 2. [Ejercicio 2: Añade una base de datos y una red personalizada](#ejercicio-2-añade-una-base-de-datos-y-una-red-personalizada)
@@ -12,9 +12,6 @@
 10. [Ejercicio 10: Limpia todos los recursos de Compose](#ejercicio-10-limpia-todos-los-recursos-de-compose)
 11. [Ejercicio 11: Orquesta y mide el rendimiento de acceso a disco en diferentes servicios](#ejercicio-11-orquesta-y-mide-el-rendimiento-de-acceso-a-disco-en-diferentes-servicios)
 12. [Ejercicio 12: Stack WordPress escalable + MySQL + phpMyAdmin + HAProxy como balanceador en red personalizada](#ejercicio-12-stack-wordpress-escalable--mysql--phpmyadmin--haproxy-como-balanceador-en-red-personalizada)
-
-
-# Módulo 5: Orquestación básica con Docker Compose
 
 ---
 

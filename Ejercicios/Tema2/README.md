@@ -1,4 +1,4 @@
-# Índice de ejercicios
+# Imágenes Docker y Dockerfiles: Índice de ejercicios
 
 - [Ejercicio 1: Explora las imágenes disponibles](#ejercicio-1-explora-las-imágenes-disponibles)
 - [Ejercicio 2: Descarga una imagen desde Docker Hub](#ejercicio-2-descarga-una-imagen-desde-docker-hub)
@@ -10,11 +10,6 @@
 - [Ejercicio 8: Usa variables de build (build args) en un Dockerfile](#ejercicio-8-usa-variables-de-build-build-args-en-un-dockerfile)
 - [Ejercicio 9: Usa un Dockerfile para crear una imagen multi-usuario](#ejercicio-9-usa-un-dockerfile-para-crear-una-imagen-multi-usuario)
 - [Ejercicio 10: Limpieza de imágenes y recursos](#ejercicio-10-limpieza-de-imágenes-y-recursos)
-
----
-
-
-# Imágenes Docker y Dockerfiles
 
 ---
 

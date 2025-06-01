@@ -1,4 +1,4 @@
-# Índice de ejercicios
+# Volúmenes y Almacenamiento: Índice de ejercicios
 
 - [Ejercicio 1: Crea y usa un volumen](#ejercicio-1-crea-y-usa-un-volumen)
 - [Ejercicio 2: Persiste datos entre contenedores](#ejercicio-2-persiste-datos-entre-contenedores)
@@ -12,11 +12,6 @@
 - [Ejercicio 10: Usa varios volúmenes en un mismo contenedor](#ejercicio-10-usa-varios-volúmenes-en-un-mismo-contenedor)
 - [Ejercicio 11: Compara rendimiento de distintos tipos de volúmenes en Docker](#ejercicio-11-compara-rendimiento-de-distintos-tipos-de-volúmenes-en-docker)
 - [Limpieza general](#limpieza-general)
-
----
-
-
-# Volúmenes y Almacenamiento
 
 ---
 
