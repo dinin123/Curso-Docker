@@ -1,4 +1,4 @@
-### Práctica: Instalación de Docker en Rocky Linux 9
+# Práctica: Instalación de Docker en Rocky Linux 9
 
 En esta práctica aprenderás a instalar Docker en un sistema operativo Rocky Linux 9. Docker es una plataforma para desarrollar, enviar y ejecutar aplicaciones dentro de contenedores.
 
