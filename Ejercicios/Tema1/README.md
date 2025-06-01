@@ -1,4 +1,21 @@
-# Instalación de Docker en Rocky Linux 9
+# Índice de contenidos
+
+- [Requisitos previos](#requisitos-previos)
+- [Paso 1: Actualizar el sistema](#paso-1-actualizar-el-sistema)
+- [Paso 2: Instalar dependencias necesarias](#paso-2-instalar-dependencias-necesarias)
+- [Paso 3: Añadir el repositorio oficial de Docker](#paso-3-añadir-el-repositorio-oficial-de-docker)
+- [Paso 4: Instalar Docker Engine](#paso-4-instalar-docker-engine)
+- [Paso 5: Habilitar e iniciar el servicio Docker](#paso-5-habilitar-e-iniciar-el-servicio-docker)
+- [Paso 6: Verificar la instalación](#paso-6-verificar-la-instalación)
+- [Paso 7 (Opcional): Usar Docker sin sudo](#paso-7-opcional-usar-docker-sin-sudo)
+- [Conclusión](#conclusión)
+- [Ejercicio 1: Ejecutar contenedores](#ejercicio-1-ejecutar-contenedores)
+
+---
+
+
+
+# Instalación de Docker en Rocky Linux 9 y Ejercicios básicos
 
 En esta práctica aprenderás a instalar Docker en un sistema operativo Rocky Linux 9. Docker es una plataforma para desarrollar, enviar y ejecutar aplicaciones dentro de contenedores.
 

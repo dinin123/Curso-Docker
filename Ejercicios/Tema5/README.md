@@ -1,3 +1,23 @@
+# Índice de ejercicios
+
+- [Ejercicio 1: Visualiza los logs básicos de un contenedor](#ejercicio-1-visualiza-los-logs-básicos-de-un-contenedor)
+- [Ejercicio 2: Sigue los logs en tiempo real y haz una prueba](#ejercicio-2-sigue-los-logs-en-tiempo-real-y-haz-una-prueba)
+- [Ejercicio 3: Visualiza solo los errores del contenedor](#ejercicio-3-visualiza-solo-los-errores-del-contenedor)
+- [Ejercicio 4: Revisa los logs de arranque fallido](#ejercicio-4-revisa-los-logs-de-arranque-fallido)
+- [Ejercicio 5: Obtén logs con marcas de tiempo y líneas recientes](#ejercicio-5-obtén-logs-con-marcas-de-tiempo-y-líneas-recientes)
+- [Ejercicio 6: Consulta los logs de un periodo concreto](#ejercicio-6-consulta-los-logs-de-un-periodo-concreto)
+- [Ejercicio 7: Visualiza eventos Docker en tiempo real](#ejercicio-7-visualiza-eventos-docker-en-tiempo-real)
+- [Ejercicio 8: Filtra eventos solo de un contenedor concreto](#ejercicio-8-filtra-eventos-solo-de-un-contenedor-concreto)
+- [Ejercicio 9: Guarda los logs de un contenedor a un archivo para auditoría](#ejercicio-9-guarda-los-logs-de-un-contenedor-a-un-archivo-para-auditoría)
+- [Ejercicio 10: Audita los eventos del sistema durante un periodo](#ejercicio-10-audita-los-eventos-del-sistema-durante-un-periodo)
+- [Ejercicio 11: Configura y revisa logs en formato JSON](#ejercicio-11-configura-y-revisa-logs-en-formato-json)
+- [Ejercicio 12: Redirecciona logs de Docker a syslog (y verifícalo)](#ejercicio-12-redirecciona-logs-de-docker-a-syslog-y-verifícalo)
+- [Ejercicio 13: Debug de contenedores con logs de aplicaciones](#ejercicio-13-debug-de-contenedores-con-logs-de-aplicaciones)
+- [Ejercicio 14: Audita acceso “exec” en contenedores para detectar intrusiones](#ejercicio-14-audita-acceso-exec-en-contenedores-para-detectar-intrusiones)
+
+---
+
+
 #Logs y Eventos en Docker
 
 ---

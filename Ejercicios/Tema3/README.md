@@ -1,4 +1,22 @@
-# Módulo 3: Volúmenes y Almacenamiento
+# Índice de ejercicios
+
+- [Ejercicio 1: Crea y usa un volumen](#ejercicio-1-crea-y-usa-un-volumen)
+- [Ejercicio 2: Persiste datos entre contenedores](#ejercicio-2-persiste-datos-entre-contenedores)
+- [Ejercicio 3: Usa bind mounts para compartir carpetas del host](#ejercicio-3-usa-bind-mounts-para-compartir-carpetas-del-host)
+- [Ejercicio 4: Usa un volumen para una base de datos simple (SQLite)](#ejercicio-4-usa-un-volumen-para-una-base-de-datos-simple-sqlite)
+- [Ejercicio 5: Crea un tmpfs mount y observa qué ocurre](#ejercicio-5-crea-un-tmpfs-mount-y-observa-qué-ocurre)
+- [Ejercicio 6: Backup de un volumen Docker](#ejercicio-6-backup-de-un-volumen-docker)
+- [Ejercicio 7: Restaura un volumen desde un backup](#ejercicio-7-restaura-un-volumen-desde-un-backup)
+- [Ejercicio 8: Limpia volúmenes no usados](#ejercicio-8-limpia-volúmenes-no-usados)
+- [Ejercicio 9: Lista y revisa detalles de volúmenes](#ejercicio-9-lista-y-revisa-detalles-de-volúmenes)
+- [Ejercicio 10: Usa varios volúmenes en un mismo contenedor](#ejercicio-10-usa-varios-volúmenes-en-un-mismo-contenedor)
+- [Ejercicio 11: Compara rendimiento de distintos tipos de volúmenes en Docker](#ejercicio-11-compara-rendimiento-de-distintos-tipos-de-volúmenes-en-docker)
+- [Limpieza general](#limpieza-general)
+
+---
+
+
+# Volúmenes y Almacenamiento
 
 ---
 

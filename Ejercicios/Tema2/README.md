@@ -1,4 +1,20 @@
-# Módulo 2: Imágenes Docker y Dockerfiles
+# Índice de ejercicios
+
+- [Ejercicio 1: Explora las imágenes disponibles](#ejercicio-1-explora-las-imágenes-disponibles)
+- [Ejercicio 2: Descarga una imagen desde Docker Hub](#ejercicio-2-descarga-una-imagen-desde-docker-hub)
+- [Ejercicio 3: Crea un Dockerfile mínimo y construye una imagen](#ejercicio-3-crea-un-dockerfile-mínimo-y-construye-una-imagen)
+- [Ejercicio 4: Construye una imagen personalizada con dependencias](#ejercicio-4-construye-una-imagen-personalizada-con-dependencias)
+- [Ejercicio 5: Usa COPY para añadir archivos al contenedor](#ejercicio-5-usa-copy-para-añadir-archivos-al-contenedor)
+- [Ejercicio 6: Diferencia entre CMD y ENTRYPOINT](#ejercicio-6-diferencia-entre-cmd-y-entrypoint)
+- [Ejercicio 7: Usa RUN para instalar varias dependencias y compara capas](#ejercicio-7-usa-run-para-instalar-varias-dependencias-y-compara-capas)
+- [Ejercicio 8: Usa variables de build (build args) en un Dockerfile](#ejercicio-8-usa-variables-de-build-build-args-en-un-dockerfile)
+- [Ejercicio 9: Usa un Dockerfile para crear una imagen multi-usuario](#ejercicio-9-usa-un-dockerfile-para-crear-una-imagen-multi-usuario)
+- [Ejercicio 10: Limpieza de imágenes y recursos](#ejercicio-10-limpieza-de-imágenes-y-recursos)
+
+---
+
+
+# Imágenes Docker y Dockerfiles
 
 ---
 

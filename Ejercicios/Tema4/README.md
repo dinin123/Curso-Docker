@@ -1,4 +1,23 @@
-# Módulo 4: Redes en Docker
+# Índice de ejercicios
+
+- [Ejercicio 1: Lista redes existentes](#ejercicio-1-lista-redes-existentes)
+- [Ejercicio 2: Inspecciona una red](#ejercicio-2-inspecciona-una-red)
+- [Ejercicio 3: Conectividad entre contenedores en red por defecto y red personalizada](#ejercicio-3-conectividad-entre-contenedores-en-red-por-defecto-y-red-personalizada)
+- [Ejercicio 4: Mapea un puerto y accede desde el host](#ejercicio-4-mapea-un-puerto-y-accede-desde-el-host)
+- [Ejercicio 5: Usa --network none para máxima seguridad](#ejercicio-5-usa---network-none-para-máxima-seguridad)
+- [Ejercicio 6: Prueba la red host](#ejercicio-6-prueba-la-red-host)
+- [Ejercicio 7: Desconecta y reconecta un contenedor de una red](#ejercicio-7-desconecta-y-reconecta-un-contenedor-de-una-red)
+- [Ejercicio 8: Crea una red interna (--internal)](#ejercicio-8-crea-una-red-interna---internal)
+- [Ejercicio 9: Usa varias redes en un mismo contenedor](#ejercicio-9-usa-varias-redes-en-un-mismo-contenedor)
+- [Ejercicio 10: Limpia redes no usadas](#ejercicio-10-limpia-redes-no-usadas)
+- [Ejercicio 11: (Opcional) Simula comunicación entre diferentes redes](#ejercicio-11-opcional-simula-comunicación-entre-diferentes-redes)
+- [Limpieza general](#limpieza-general)
+
+---
+
+
+
+# Redes en Docker
 
 ---
 
