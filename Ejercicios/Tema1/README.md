@@ -187,7 +187,7 @@ Para ejecutar contenedores, primero necesitamos descargar algunas imágenes.
 
 3. También podemos descargar diferentes versiones de la misma imagen.
 
-    Ejecuta `docker pull ubuntu:24.04` para descargar la imagen de Ubuntu 16.10.
+    Ejecuta `docker pull ubuntu:24.04` para descargar la imagen de Ubuntu 18.04.
 
     Luego, si ejecutamos `docker images` nuevamente, deberíamos ver:
 
