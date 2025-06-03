@@ -102,8 +102,10 @@ Ves la versión instalada de requests, por ejemplo, `2.31.0`.
 
 **Limpieza:***
 
+```limpieza
 docker rm python-requests
 docker rmi python-requests
+```
 
 ---
 
