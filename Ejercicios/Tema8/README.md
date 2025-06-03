@@ -2,7 +2,8 @@
 
 - [Ejercicio 1: Contenedor SSH seguro con Alpine, solo acceso clave RSA y usuario sudo](#ejercicio-1-contenedor-ssh-seguro-con-alpine-solo-acceso-clave-rsa-y-usuario-sudo)
 - [Ejercicio 2: Simulación y recuperación ante fallo grave en Docker (falta de directorio crítico)](#ejercicio-2-simulación-y-recuperación-ante-fallo-grave-en-docker-falta-de-directorio-crítico)
-- [Ejercicio 3.  Auditoría de seguridad de contenedores Docker desde otro contenedor](#ejercicio-3--auditoría-de-seguridad-de-contenedores-docker-desde-otro-contenedor)
+- [Ejercicio 3: Auditoría de seguridad de contenedores Docker desde otro contenedor](#ejercicio-3--auditoría-de-seguridad-de-contenedores-docker-desde-otro-contenedor)
+- [Ejercicio 4: Contenedor Jaula SSH con acceso por certificado.
 
 ---
 
@@ -338,7 +339,7 @@ docker images --format '{{.Repository}}:{{.Tag}}' | xargs -L1 docker run --rm -v
 > **Recuerda:** La auditoría de seguridad es un proceso continuo, no un evento único. Mantén tus imágenes y contenedores monitorizados, y actualiza siempre ante vulnerabilidades críticas.
 
 
-6. Contenedor Jaula SSH con acceso por certificado
+# Ejercicio 4. Contenedor Jaula SSH con acceso por certificado
 
 Vamos a crear un contenedor SSH con un usuario personalizado y su clave privada para acceso seguro. 
 
@@ -425,7 +426,7 @@ Lanzamos el compose y verificamos:
 ```bash
 docker compose up -d
 [+] Running 2/2
- ✔ Network ejercicio6_default  Created                                                                                                                                                                                            0.2s
+ ✔ Network ejercicio4_default  Created                                                                                                                                                                                            0.2s
  ✔ Container jaulassh          Started                                        
 
 # docker ps -a
