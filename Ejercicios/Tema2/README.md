@@ -67,6 +67,7 @@ Se muestra `Hola Dockerfile` por pantalla.
 
 **Limpieza:**
 ```bash
+docker rm saludo-dockerfile
 docker rmi saludo-dockerfile
 ```
 
