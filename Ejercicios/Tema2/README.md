@@ -272,7 +272,7 @@ Elimina todas las imágenes y contenedores que creaste durante estos ejercicios 
 ```bash
 docker ps -a # Revisa qué contenedores hay
 docker rm -f $(docker ps -aq) # Borra todos los contenedores
-docker rmi -f saludo-dockerfile python-requests mensaje-copy entrypoint-cmd multi-run single-run alpine-arg alpine-arg-317 alpine-usuario mensaje-copy node:18
+docker rmi -f saludo-dockerfile python-requests mensaje-copy entrypoint-cmd multi-run single-run alpine-arg alpine-arg-317 alpine-usuario mensaje-copy node:18 hello-world
 docker system prune -f
 ```
 
