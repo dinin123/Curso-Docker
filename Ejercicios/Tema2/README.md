@@ -179,14 +179,14 @@ Crea dos Dockerfiles: uno instalando dos paquetes con dos RUN, y otro combinando
 
 **Desarrollo:**
 
-**Dockerfile A (más capas):**
+**DockerfileA (más capas):**
 ```dockerfile
 FROM alpine
 RUN apk add --no-cache curl
 RUN apk add --no-cache nano
 ```
 
-**Dockerfile B (una capa):**
+**DockerfileB (una capa):**
 ```dockerfile
 FROM alpine
 RUN apk add --no-cache curl nano
