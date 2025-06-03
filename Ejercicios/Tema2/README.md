@@ -100,6 +100,11 @@ docker run python-requests python3 -c "import requests; print(requests.__version
 **Resolución:**  
 Ves la versión instalada de requests, por ejemplo, `2.31.0`.
 
+**Limpieza:***
+
+docker rm python-requests
+docker rmi python-requests
+
 ---
 
 ## Ejercicio 5: Usa COPY para añadir archivos al contenedor
