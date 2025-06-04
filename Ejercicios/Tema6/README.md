@@ -4,7 +4,6 @@
 - [Ejercicio 2: Limita el uso de CPU y fuerza consumo](#ejercicio-2-limita-el-uso-de-cpu-y-fuerza-consumo)
 - [Ejercicio 3: Limita la cantidad de procesos y fuerza error de fork](#ejercicio-3-limita-la-cantidad-de-procesos-y-fuerza-error-de-fork)
 - [Ejercicio 4: Limita la velocidad de escritura en disco (IO) y observa el efecto](#ejercicio-5-limita-la-velocidad-de-escritura-en-disco-io-y-observa-el-efecto)
-- [Ejercicio 5: Limita la red a 1mbits-y-comprueba-con-una-descarga](#ejercicio-6-limita-la-red-a-1mbits-y-comprueba-con-una-descarga)
 - [Ejercicio 6: Limita RAM y SWAP, y fuerza swap-out](#ejercicio-7-limita-ram-y-swap-y-fuerza-swap-out)
 - [Ejercicio 7: Limita CPU a un solo núcleo específico y comprueba afinidad](#ejercicio-8-limita-cpu-a-un-solo-núcleo-específico-y-comprueba-afinidad)
 
@@ -124,29 +123,6 @@ docker run --name io_limit --device-write-bps /dev/sda:1mb ubuntu bash -c "dd if
 
 **Resolución:**  
 El tiempo de ejecución refleja el límite aplicado.
-
----
-
-## Ejercicio 5: Limita la red a 1Mbit/s y comprueba con una descarga
-
-**Planteamiento:**  
-Usa un contenedor con acceso root en red, instala `tc` y limita la red a 1Mbit/s, luego descarga un archivo grande y mide la velocidad.
-
-**Desarrollo:**
-```bash
-docker run --rm -it --cap-add=NET_ADMIN ubuntu bash
-# Dentro del contenedor:
-apt update && apt install -y iproute2 curl
-tc qdisc add dev eth0 root tbf rate 1mbit burst 10kb latency 70ms
-curl -o /dev/null http://speedtest.tele2.net/10MB.zip
-```
-
-**Comprobación:**
-- La descarga tarda unos ~80 segundos (10MB a 1Mbit/s).
-- Si repites el test **sin** tc, la descarga será mucho más rápida.
-
-**Resolución:**  
-El tiempo de descarga evidencia el límite de red.
 
 ---
 
