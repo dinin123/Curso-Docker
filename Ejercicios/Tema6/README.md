@@ -64,7 +64,7 @@ Lanza un contenedor con un máximo de 10 procesos. Intenta crear más para forza
 
 **Desarrollo:**
 ```bash
-docker run --name pids_limit --pids-limit=10 ubuntu bash -c "apt update && apt install -y stress && stress --fork 20 --timeout 10"
+docker run --name pids_limit --pids-limit=10 ubuntu bash -c "apt update && apt install -y stress-ng && stress-ng --fork 20 --timeout 100"
 ```
 
 **Comprobación:**
