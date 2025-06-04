@@ -23,27 +23,28 @@ ssh-keygen -t rsa -b 4096 -f id_rsa_usuario1
 
 ## 2. Dockerfile
 
-Crea un archivo `Dockerfile` así:
+Crea un archivo `Dockerfile` así: (dejar solo "-D" después de las pruebas para eliminar debbug).
 
 ```dockerfile
 FROM alpine:latest
+RUN apk update && apk add --no-cache openssh sudo
+RUN echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config && \
+    echo 'PermitRootLogin no' >> /etc/ssh/sshd_config && \
+    echo 'PubkeyAuthentication yes' >> /etc/ssh/sshd_config && \
+    echo 'MaxAuthTries 15' >> /etc/ssh/sshd_config
+RUN adduser -D test
+RUN passwd -u test
+RUN echo 'test ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN mkdir -p /home/test/.ssh && \
+    chown test:test /home/test/.ssh && \
+    chmod 700 /home/test/.ssh
+COPY .id_rsa_usuario1.pub/ /home/test/.ssh/authorized_keys
+RUN chown test:test /home/test/.ssh/authorized_keys && \
+    chmod 600 /home/test/.ssh/authorized_keys
+RUN ssh-keygen -A
+EXPOSE 22
+CMD ["/usr/sbin/sshd", "-Ded"]
 
-RUN apk update &&     apk add --no-cache openssh sudo
-
-# Crea usuario usuario1 y lo agrega a sudoers
-RUN adduser -D usuario1 &&     echo "usuario1 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-
-# Prepara claves y directorios
-RUN mkdir -p /home/usuario1/.ssh
-COPY id_rsa_usuario1.pub /home/usuario1/.ssh/authorized_keys
-RUN chown -R usuario1:usuario1 /home/usuario1/.ssh &&     chmod 700 /home/usuario1/.ssh &&     chmod 600 /home/usuario1/.ssh/authorized_keys
-
-# Configuración SSHD: solo clave pública, sin root login
-RUN sed -i 's/#Port 22/Port 10022/' /etc/ssh/sshd_config &&     sed -i 's/#PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config &&     sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config &&     echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config &&     echo "AllowUsers usuario1" >> /etc/ssh/sshd_config
-
-# Arranca el servicio SSH
-EXPOSE 10022
-CMD ["/usr/sbin/sshd", "-D"]
 ```
 
 ---
@@ -53,13 +54,12 @@ CMD ["/usr/sbin/sshd", "-D"]
 En la raíz del proyecto:
 
 ```yaml
-version: "3.8"
 services:
   ssh:
     build: .
     container_name: sshseguro
     ports:
-      - "10022:10022"
+      - "10022:22"
     restart: always
 ```
 
@@ -95,6 +95,7 @@ ssh -p 10022 usuario1@localhost -i id_rsa_usuario1
 - Solo podrá acceder usuario1 (no root).
 - Solo con clave pública.
 - El usuario1 puede hacer `sudo` sin contraseña.
+- Importante, los usuarios sin password están bloqueados en /etc/shadow!!
 
 ---
 
