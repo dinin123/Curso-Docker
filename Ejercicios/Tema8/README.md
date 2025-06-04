@@ -47,10 +47,6 @@ EXPOSE 22
 CMD ["/usr/sbin/sshd", "-Ded"]
 ```
 
-Otra alternativa,con chown, de un proyecto de [Github](https://github.com/masonarchhsieh/chroot-jail-for-ssh)
-
-
-
 ---
 
 ## 3. docker-compose.yml
@@ -77,6 +73,8 @@ proyecto-ssh/
 ├── docker-compose.yml
 └── id_rsa_usuario1.pub
 ```
+
+Otra alternativa,con chown, de un proyecto de [Github](https://github.com/masonarchhsieh/chroot-jail-for-ssh)
 
 ---
 
