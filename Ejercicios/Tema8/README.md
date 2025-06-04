@@ -9,6 +9,8 @@
 
 # Ejercicio 1: Contenedor SSH seguro con Alpine, solo acceso clave RSA y usuario sudo
 
+Otra alternativa,con chown, de un proyecto de Github: [SSH con CHROOT](https://github.com/masonarchhsieh/chroot-jail-for-ssh)
+
 ## 1. Prepara la clave pública
 
 Supón que tienes un archivo llamado `id_rsa_usuario1.pub` en el raíz del proyecto.  
@@ -73,8 +75,6 @@ proyecto-ssh/
 ├── docker-compose.yml
 └── id_rsa_usuario1.pub
 ```
-
-Otra alternativa,con chown, de un proyecto de [Github](https://github.com/masonarchhsieh/chroot-jail-for-ssh)
 
 ---
 
