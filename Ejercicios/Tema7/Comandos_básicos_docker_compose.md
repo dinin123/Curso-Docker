@@ -10,7 +10,7 @@ Docker Compose permite definir y ejecutar aplicaciones Docker multicontenedor a 
 |--------|---------|
 | Levantar servicios (en foreground) | `docker compose up` |
 | Levantar servicios en segundo plano | `docker compose up -d` |
-| Detener servicios | `dockercompose down` |
+| Detener servicios | `docker compose down` |
 | Reconstruir servicios | `docker compose up --build` |
 | Eliminar contenedores, redes y volúmenes (todo) | `docker compose down -v` |
 | Ver el estado de los servicios | `docker compose ps` |
