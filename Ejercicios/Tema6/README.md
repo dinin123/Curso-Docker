@@ -106,33 +106,9 @@ El contenedor no puede crear más de 10 procesos.
 
 ---
 
-## Ejercicio 4: Limita archivos abiertos y fuerza error de “too many open files”
-
-**Planteamiento:**  
-Lanza un contenedor con un límite de 32 archivos abiertos y usa un script para abrir muchos archivos a la vez.
-
-**Desarrollo:**
-Crea un archivo de prueba llamado `test_openfiles.sh`:
-```bash
-for i in $(seq 1 50); do
-  exec 3<> "file_$i.txt"
-done
-echo "Fin"
-```
-Lanza el contenedor y ejecuta el script:
-```bash
-docker run --name nofiles_limit --ulimit nofile=32:32 -v $(pwd)/test_openfiles.sh:/test.sh ubuntu bash -c "apt update && apt install -y bash && bash /test.sh"
-```
-
-**Comprobación:**
-- El script falla con “Too many open files”.
-
-**Resolución:**  
-El límite se ha forzado y sólo se pueden abrir hasta 32 archivos simultáneos.
-
 ---
 
-## Ejercicio 5: Limita la velocidad de escritura en disco (I/O) y observa el efecto
+## Ejercicio 4: Limita la velocidad de escritura en disco (I/O) y observa el efecto
 
 **Planteamiento:**  
 Limita la escritura en disco a 1MB/s y prueba escribir un archivo grande, midiendo el tiempo.
@@ -152,7 +128,7 @@ El tiempo de ejecución refleja el límite aplicado.
 
 ---
 
-## Ejercicio 6: Limita la red a 1Mbit/s y comprueba con una descarga
+## Ejercicio 5: Limita la red a 1Mbit/s y comprueba con una descarga
 
 **Planteamiento:**  
 Usa un contenedor con acceso root en red, instala `tc` y limita la red a 1Mbit/s, luego descarga un archivo grande y mide la velocidad.
@@ -175,7 +151,7 @@ El tiempo de descarga evidencia el límite de red.
 
 ---
 
-## Ejercicio 7: Limita RAM y SWAP, y fuerza swap-out
+## Ejercicio 6: Limita RAM y SWAP, y fuerza swap-out
 
 **Planteamiento:**  
 Limita un contenedor a 64MB de RAM y 128MB de swap, y ejecuta un proceso que intenta usar más memoria.
@@ -193,7 +169,7 @@ El proceso es “matado” cuando se intenta usar más memoria de la permitida (
 
 ---
 
-## Ejercicio 8: Limita CPU a un solo núcleo específico y comprueba afinidad
+## Ejercicio 7: Limita CPU a un solo núcleo específico y comprueba afinidad
 
 **Planteamiento:**  
 Lanza un contenedor asignado solo al core 0, genera carga y verifica que se usa solo ese núcleo.
