@@ -4,8 +4,8 @@
 - [Ejercicio 2: Limita el uso de CPU y fuerza consumo](#ejercicio-2-limita-el-uso-de-cpu-y-fuerza-consumo)
 - [Ejercicio 3: Limita la cantidad de procesos y fuerza error de fork](#ejercicio-3-limita-la-cantidad-de-procesos-y-fuerza-error-de-fork)
 - [Ejercicio 4: Limita la velocidad de escritura en disco (IO) y observa el efecto](#ejercicio-5-limita-la-velocidad-de-escritura-en-disco-io-y-observa-el-efecto)
-- [Ejercicio 6: Limita RAM y SWAP, y fuerza swap-out](#ejercicio-7-limita-ram-y-swap-y-fuerza-swap-out)
-- [Ejercicio 7: Limita CPU a un solo núcleo específico y comprueba afinidad](#ejercicio-8-limita-cpu-a-un-solo-núcleo-específico-y-comprueba-afinidad)
+- [Ejercicio 5: Limita RAM y SWAP, y fuerza swap-out](#ejercicio-7-limita-ram-y-swap-y-fuerza-swap-out)
+- [Ejercicio 6: Limita CPU a un solo núcleo específico y comprueba afinidad](#ejercicio-8-limita-cpu-a-un-solo-núcleo-específico-y-comprueba-afinidad)
 
 ---
 
@@ -126,7 +126,7 @@ El tiempo de ejecución refleja el límite aplicado.
 
 ---
 
-## Ejercicio 6: Limita RAM y SWAP, y fuerza swap-out
+## Ejercicio 5: Limita RAM y SWAP, y fuerza swap-out
 
 **Planteamiento:**  
 Limita un contenedor a 64MB de RAM y 128MB de swap, y ejecuta un proceso que intenta usar más memoria.
@@ -144,7 +144,7 @@ El proceso es “matado” cuando se intenta usar más memoria de la permitida (
 
 ---
 
-## Ejercicio 7: Limita CPU a un solo núcleo específico y comprueba afinidad
+## Ejercicio 6: Limita CPU a un solo núcleo específico y comprueba afinidad
 
 **Planteamiento:**  
 Lanza un contenedor asignado solo al core 0, genera carga y verifica que se usa solo ese núcleo.
