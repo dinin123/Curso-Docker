@@ -45,8 +45,11 @@ RUN chown usuario1:usuario1 /home/usuario1/.ssh/authorized_keys && \
 RUN ssh-keygen -A
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-Ded"]
-
 ```
+
+Otra alternativa,con chown, de un proyecto de [Github](https://github.com/masonarchhsieh/chroot-jail-for-ssh)
+
+
 
 ---
 
