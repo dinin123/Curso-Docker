@@ -9,7 +9,7 @@
 
 # Ejercicio 1: Contenedor SSH seguro con Alpine, solo acceso clave RSA y usuario sudo
 
-Otra alternativa,con chown, de un proyecto de Github: [SSH con CHROOT](https://github.com/masonarchhsieh/chroot-jail-for-ssh)
+Otra alternativa,con chroot, de un proyecto de Github: [SSH con CHROOT](https://github.com/masonarchhsieh/chroot-jail-for-ssh)
 
 ## 1. Prepara la clave pública
 
