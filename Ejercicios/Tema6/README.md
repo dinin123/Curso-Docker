@@ -72,10 +72,37 @@ docker run --name pids_limit --pids-limit=10 ubuntu bash -c "apt update && apt i
 ```bash
 docker logs pids_limit
 ```
-- Aparecen errores “fork: Resource temporarily unavailable”.
+- Se ve a stress-ng que solo puede abrir X procesos y va mátando otros:
+
+```bash
+stress-ng: info:  [1] dispatching hogs: 30 fork
+stress-ng: debug: [1] starting stressors
+stress-ng: debug: [577] fork: [577] started (instance 0 on CPU 1)
+stress-ng: debug: [578] fork: [578] started (instance 1 on CPU 1)
+stress-ng: debug: [580] fork: [580] started (instance 3 on CPU 1)
+stress-ng: debug: [582] fork: [582] started (instance 4 on CPU 1)
+stress-ng: debug: [583] fork: [583] started (instance 5 on CPU 1)
+stress-ng: debug: [585] fork: [585] started (instance 6 on CPU 0)
+stress-ng: debug: [579] fork: [579] started (instance 2 on CPU 0)
+stress-ng: debug: [5272] fork: [5272] started (instance 7 on CPU 1)
+stress-ng: debug: [9438] fork: [9438] started (instance 8 on CPU 0)
+stress-ng: debug: [580] fork: [580] exited (instance 3 on CPU 1)
+stress-ng: debug: [582] fork: [582] exited (instance 4 on CPU 0)
+stress-ng: debug: [577] fork: [577] exited (instance 0 on CPU 1)
+stress-ng: debug: [578] fork: [578] exited (instance 1 on CPU 1)
+stress-ng: debug: [585] fork: [585] exited (instance 6 on CPU 0)
+```
+
+- Podemos ver el límite aplicado a 
+
+```cat
+docker exec pids_limit cat /sys/fs/cgroup/pids.max
+10
+```
+
 
 **Resolución:**  
-El contenedor no puede crear más de 10 procesos y los intentos adicionales fallan con error.
+El contenedor no puede crear más de 10 procesos.
 
 ---
 
