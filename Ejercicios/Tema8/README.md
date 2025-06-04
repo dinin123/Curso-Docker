@@ -32,15 +32,15 @@ RUN echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config && \
     echo 'PermitRootLogin no' >> /etc/ssh/sshd_config && \
     echo 'PubkeyAuthentication yes' >> /etc/ssh/sshd_config && \
     echo 'MaxAuthTries 15' >> /etc/ssh/sshd_config
-RUN adduser -D test
-RUN passwd -u test
-RUN echo 'test ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-RUN mkdir -p /home/test/.ssh && \
-    chown test:test /home/test/.ssh && \
-    chmod 700 /home/test/.ssh
-COPY .id_rsa_usuario1.pub/ /home/test/.ssh/authorized_keys
-RUN chown test:test /home/test/.ssh/authorized_keys && \
-    chmod 600 /home/test/.ssh/authorized_keys
+RUN adduser -D usuario1
+RUN passwd -u usuario1
+RUN echo 'usuario1 ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN mkdir -p /home/usuario1/.ssh && \
+    chown usuario1:usuario1 /home/usuario1/.ssh && \
+    chmod 700 /home/usuario1/.ssh
+COPY .id_rsa_usuario1.pub /home/usuario1/.ssh/authorized_keys
+RUN chown usuario1:usuario1 /home/usuario1/.ssh/authorized_keys && \
+    chmod 600 /home/usuario1/.ssh/authorized_keys
 RUN ssh-keygen -A
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-Ded"]
