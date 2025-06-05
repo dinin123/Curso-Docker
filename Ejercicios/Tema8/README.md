@@ -130,14 +130,14 @@ Despliega un stack compuesto por MySQL, WordPress (inicialmente 1 réplica, esca
 
 Hay que definir las siguientes redes:
 
-Pública: Haproxy 
-Interna: Haproxy - Wordpress - PHPMyAdmin
-backend: Wordpress - DB - PHPMyAdmin
+**Pública**: Haproxy 
+**Interna**: Haproxy - Wordpress - PHPMyAdmin
+**backend**: Wordpress - DB - PHPMyAdmin
 
 Hay que definir los siguintes almacenamientos:
 
-vol-db: Almacenamiento persistente para los datos de BBDD.
-vol-web: Almacenamiento persistente para los datos de WWW. Todos los contenedores de wordpress tienen que compartirlo.
+**vol-db**: Almacenamiento persistente para los datos de BBDD.
+**vol-web**: Almacenamiento persistente para los datos de WWW. Todos los contenedores de wordpress tienen que compartirlo.
 
 ---
 
