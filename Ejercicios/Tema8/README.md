@@ -137,7 +137,7 @@ Hay que definir las siguientes redes:
 Hay que definir los siguintes almacenamientos:
 
 **vol-db**: Almacenamiento persistente para los datos de BBDD.  
-**vol-web**: Almacenamiento persistente para los datos de WWW. Todos los contenedores de wordpress tienen que compartirlo.  
+**vol-web**: Almacenamiento persistente para los datos de Wordpress. Todos los contenedores de wordpress tienen que compartirlo.  
 
 ---
 
