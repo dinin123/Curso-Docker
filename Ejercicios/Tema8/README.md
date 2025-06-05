@@ -1,7 +1,7 @@
 # Ejercicios avzanzados: Índice de ejercicios
 
 - [Ejercicio 1: Contenedor SSH seguro con Alpine, solo acceso clave RSA y usuario sudo](#ejercicio-1-contenedor-ssh-seguro-con-alpine-solo-acceso-clave-rsa-y-usuario-sudo)
-- [Ejercicio 2: Ejercicio 2: Stack WordPress escalable(#ejercicio-2-stack-wordpress-escalable) 
+- [Ejercicio 2: Stack WordPress escalable(#ejercicio-2-stack-wordpress-escalable) 
 - [Ejercicio 3: Simulación y recuperación ante fallo grave en Docker (falta de directorio crítico)](#ejercicio-3-simulación-y-recuperación-ante-fallo-grave-en-docker-falta-de-directorio-crítico)
 - [Ejercicio 4: Auditoría de seguridad de contenedores Docker desde otro contenedor](#ejercicio-4--auditoría-de-seguridad-de-contenedores-docker-desde-otro-contenedor)
 
