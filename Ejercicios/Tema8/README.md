@@ -140,6 +140,138 @@ Hay que definir los siguintes almacenamientos:
 
 ---
 
+Fichero docker-compose.yml
+
+```
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: wppassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+    networks:
+      - backnet
+
+  wordpress:
+    image: wordpress:latest
+    deploy:
+      replicas: 3
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wppassword
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wp_data:/var/www/html
+    networks:
+      - intnet
+      - backnet
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    ports:
+      - "8089:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: rootpassword
+    networks:
+      - intnet
+      - backnet
+
+  haproxy:
+    image: haproxy:2.9
+    depends_on:
+      - wordpress
+    ports:
+      - "8080:80"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    networks:
+      - pubnet
+      - intnet
+
+volumes:
+  db_data:
+  wp_data:
+
+networks:
+  pubnet:
+  intnet:
+  backnet:
+```
+
+Configuración de haproxy (haproxy.cfg)
+
+```Harproxy.cfg
+global
+    log stdout format raw local0
+    maxconn 2000
+
+defaults
+    log     global
+    mode    http
+    timeout connect 5000ms
+    timeout client  50000ms
+    timeout server  50000ms
+
+resolvers docker
+    nameserver dns 127.0.0.11:53
+    resolve_retries 3
+    timeout resolve 1s
+    timeout retry 1s
+    hold valid 2s
+    hold other 2s
+    hold refused 2s
+    hold nx 2s
+    hold timeout 2s
+
+
+frontend http-in
+    bind *:80
+
+    acl is_phpmyadmin path_beg /phpmyadmin
+    acl is_stats path_beg /haproxy-stats
+
+    use_backend pma-backend if is_phpmyadmin
+    use_backend stats-backend if is_stats
+    default_backend wordpress-backend
+
+backend wordpress-backend
+    balance roundrobin
+    option httpchk GET /
+
+     server-template wordpress 11 wordpress:80 check inter 1s resolvers docker resolve-prefer ipv4
+
+
+backend pma-backend
+    server pma phpmyadmin:80 check
+
+
+backend stats-backend
+    mode http
+    stats enable
+    stats uri /haproxy-stats
+    stats realm Haproxy\ Statistics
+    stats auth admin:123445
+    stats hide-version
+    stats refresh 5s
+```
+
+
+
+
+---
+
+
 # Ejercicio 3: Simulación y recuperación ante fallo grave en Docker (falta de directorio crítico)
 
 **Planteamiento:**  
