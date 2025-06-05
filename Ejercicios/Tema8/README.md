@@ -1,8 +1,9 @@
 # Ejercicios avzanzados: Índice de ejercicios
 
 - [Ejercicio 1: Contenedor SSH seguro con Alpine, solo acceso clave RSA y usuario sudo](#ejercicio-1-contenedor-ssh-seguro-con-alpine-solo-acceso-clave-rsa-y-usuario-sudo)
-- [Ejercicio 2: Simulación y recuperación ante fallo grave en Docker (falta de directorio crítico)](#ejercicio-2-simulación-y-recuperación-ante-fallo-grave-en-docker-falta-de-directorio-crítico)
-- [Ejercicio 3: Auditoría de seguridad de contenedores Docker desde otro contenedor](#ejercicio-3--auditoría-de-seguridad-de-contenedores-docker-desde-otro-contenedor)
+- [Ejercicio 2: Ejercicio 2: Stack WordPress escalable + MySQL + phpMyAdmin + HAProxy como balanceador en red personalizada(ejercicio-2-stack-wordPress-escalable) 
+- [Ejercicio 3: Simulación y recuperación ante fallo grave en Docker (falta de directorio crítico)](#ejercicio-3-simulación-y-recuperación-ante-fallo-grave-en-docker-falta-de-directorio-crítico)
+- [Ejercicio 4: Auditoría de seguridad de contenedores Docker desde otro contenedor](#ejercicio-4--auditoría-de-seguridad-de-contenedores-docker-desde-otro-contenedor)
 
 ---
 
@@ -121,8 +122,14 @@ ssh -p 10022 usuario1@localhost -i id_rsa_usuario1
 docker compose down
 ```
 
+## Ejercicio 2: Stack WordPress escalable + MySQL + phpMyAdmin + HAProxy como balanceador en red personalizada
 
-# Ejercicio 2: Simulación y recuperación ante fallo grave en Docker (falta de directorio crítico)
+**Planteamiento:**
+Despliega un stack compuesto por MySQL, WordPress (inicialmente 2 réplicas, escalable hasta 5), phpMyAdmin y HAProxy como balanceador en el puerto 8080, todo unido por una red personalizada. HAProxy debe estar preconfigurado para balancear hasta 5 WordPress.
+
+---
+
+# Ejercicio 3: Simulación y recuperación ante fallo grave en Docker (falta de directorio crítico)
 
 **Planteamiento:**  
 Levanta un contenedor. Después, de forma intencionada desde el sistema host, elimina un directorio crítico que impida que Docker funcione (por ejemplo, el directorio de almacenamiento de volúmenes o contenedores). Simula el fallo y explica el proceso para diagnosticar y recuperar la funcionalidad de Docker y los contenedores afectados.
@@ -245,7 +252,7 @@ docker rm -f test_nginx
 ---
 
 
-# Ejercicio 3.  Auditoría de seguridad de contenedores Docker desde otro contenedor
+# Ejercicio 4.  Auditoría de seguridad de contenedores Docker desde otro contenedor
 
 ---
 
