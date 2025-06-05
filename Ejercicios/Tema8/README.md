@@ -99,7 +99,7 @@ ssh -p 10022 usuario1@localhost -i id_rsa_usuario1
 - Solo podrá acceder usuario1 (no root).
 - Solo con clave pública.
 - El usuario1 puede hacer `sudo` sin contraseña.
-- Importante, los usuarios sin password están bloqueados en /etc/shadow!!
+- Importante, los usuarios sin password están bloqueados por defecto en las imágenes de Alpine!!
 
 ---
 
