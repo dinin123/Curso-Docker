@@ -28,7 +28,7 @@ ssh-keygen -t rsa -b 4096 -f id_rsa_usuario1
 ## 2. Dockerfile
 
 Crea un archivo `Dockerfile` así: 
-(dejar solo "-D" después de las pruebas para eliminar debbug).
+(dejar solo "-D" después de las pruebas para eliminar debug).
 
 ```dockerfile
 FROM alpine:latest
