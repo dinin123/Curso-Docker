@@ -36,7 +36,6 @@ RUN apk update && apk add --no-cache openssh sudo
 RUN echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config && \
     echo 'PermitRootLogin no' >> /etc/ssh/sshd_config && \
     echo 'PubkeyAuthentication yes' >> /etc/ssh/sshd_config && \
-    echo 'MaxAuthTries 15' >> /etc/ssh/sshd_config
 RUN adduser -D usuario1
 RUN passwd -u usuario1
 RUN echo 'usuario1 ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
