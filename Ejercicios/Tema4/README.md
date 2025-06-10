@@ -9,8 +9,6 @@
 - [Ejercicio 7: Desconecta y reconecta un contenedor de una red](#ejercicio-7-desconecta-y-reconecta-un-contenedor-de-una-red)
 - [Ejercicio 8: Crea una red interna (--internal)](#ejercicio-8-crea-una-red-interna---internal)
 - [Ejercicio 9: Usa varias redes en un mismo contenedor](#ejercicio-9-usa-varias-redes-en-un-mismo-contenedor)
-- [Ejercicio 10: Limpia redes no usadas](#ejercicio-10-limpia-redes-no-usadas)
-- [Ejercicio 11: (Opcional) Simula comunicación entre diferentes redes](#ejercicio-11-opcional-simula-comunicación-entre-diferentes-redes)
 - [Limpieza general](#limpieza-general)
 
 ---
@@ -102,6 +100,18 @@ docker exec personalizado2 apt-get update && docker exec personalizado2 apt-get 
 docker exec personalizado1 ping -c 2 personalizado2
 ```
 
+**Desde personalizado1, ping por ip a personalizado2:**
+
+1. Descubre la IP de personalizado2:
+    ```bash
+    docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' personalizado2
+    ```
+2. Haz ping a esa IP:
+    ```bash
+    docker exec personalizado1 ping -c 2 <IP_DE_PERSONALIZADO2>
+    ```
+
+
 **Resolución:**  
 - **Ping por nombre:**  
   Funciona, los contenedores se resuelven correctamente por nombre.
@@ -158,6 +168,43 @@ Ejecuta un contenedor Python con un servidor HTTP en la red host. Accede al puer
 ```bash
 docker run --rm --network host -d python:3 python -m http.server 9000
 curl http://localhost:9000
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Directory listing for /</title>
+</head>
+<body>
+<h1>Directory listing for /</h1>
+<hr>
+<ul>
+<li><a href=".dockerenv">.dockerenv</a></li>
+<li><a href="bin/">bin@</a></li>
+<li><a href="boot/">boot/</a></li>
+<li><a href="dev/">dev/</a></li>
+<li><a href="etc/">etc/</a></li>
+<li><a href="home/">home/</a></li>
+<li><a href="lib/">lib@</a></li>
+<li><a href="lib64/">lib64@</a></li>
+<li><a href="media/">media/</a></li>
+<li><a href="mnt/">mnt/</a></li>
+<li><a href="opt/">opt/</a></li>
+<li><a href="proc/">proc/</a></li>
+<li><a href="root/">root/</a></li>
+<li><a href="run/">run/</a></li>
+<li><a href="sbin/">sbin@</a></li>
+<li><a href="srv/">srv/</a></li>
+<li><a href="sys/">sys/</a></li>
+<li><a href="tmp/">tmp/</a></li>
+<li><a href="usr/">usr/</a></li>
+<li><a href="var/">var/</a></li>
+</ul>
+<hr>
+</body>
+</html>
+
+
 ```
 
 **Resolución:**  
@@ -172,14 +219,14 @@ Desconecta un contenedor de una red personalizada y comprueba que deja de respon
 
 **Desarrollo:**
 ```bash
-docker network disconnect redtest reduno
-docker exec reddos ping -c 2 reduno   # Falla
-docker network connect redtest reduno
-docker exec reddos ping -c 2 reduno   # Funciona
+docker network disconnect redtest personalizado2
+docker exec personalizado1 ping -c 2 personalizado2   # Falla
+docker network connect redtest personalizado2
+docker exec personalizado1 ping -c 2 personalizado2  # Funciona
 ```
 
 **Resolución:**  
-El ping solo responde cuando los contenedores están en la misma red.
+El ping solo responde cuando los contenedores están en la misma red. Al desconectar el contenedor, deja de tener conectividad. 
 
 ---
 
@@ -193,6 +240,35 @@ Crea una red interna y comprueba que los contenedores en esa red no pueden acced
 docker network create --internal redprivada
 docker run -dit --name solo_interna --network redprivada ubuntu bash
 docker exec solo_interna apt-get update   # Falla
+
+docker exec solo_interna apt-get update
+Ign:1 http://security.ubuntu.com/ubuntu noble-security InRelease
+Ign:2 http://archive.ubuntu.com/ubuntu noble InRelease
+Ign:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+Ign:4 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Ign:2 http://archive.ubuntu.com/ubuntu noble InRelease
+Ign:1 http://security.ubuntu.com/ubuntu noble-security InRelease
+Ign:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+Ign:4 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Ign:2 http://archive.ubuntu.com/ubuntu noble InRelease
+Ign:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+Ign:1 http://security.ubuntu.com/ubuntu noble-security InRelease
+Ign:4 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Err:2 http://archive.ubuntu.com/ubuntu noble InRelease
+  Temporary failure resolving 'archive.ubuntu.com'
+Err:1 http://security.ubuntu.com/ubuntu noble-security InRelease
+  Temporary failure resolving 'security.ubuntu.com'
+Err:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+  Temporary failure resolving 'archive.ubuntu.com'
+Err:4 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+  Temporary failure resolving 'archive.ubuntu.com'
+Reading package lists...
+W: Failed to fetch http://archive.ubuntu.com/ubuntu/dists/noble/InRelease  Temporary failure resolving 'archive.ubuntu.com'
+W: Failed to fetch http://archive.ubuntu.com/ubuntu/dists/noble-updates/InRelease  Temporary failure resolving 'archive.ubuntu.com'
+W: Failed to fetch http://archive.ubuntu.com/ubuntu/dists/noble-backports/InRelease  Temporary failure resolving 'archive.ubuntu.com'
+W: Failed to fetch http://security.ubuntu.com/ubuntu/dists/noble-security/InRelease  Temporary failure resolving 'security.ubuntu.com'
+W: Some index files failed to download. They have been ignored, or old ones used instead.
+
 ```
 
 **Resolución:**  
@@ -207,73 +283,38 @@ Conecta un contenedor a dos redes distintas y verifica que puede comunicarse con
 
 **Desarrollo:**
 ```bash
-docker network create redextra
+docker network create redextra redextra2
 docker run -dit --name multi_net --network redtest ubuntu bash
 docker network connect redextra multi_net
+docker network connect redextra2 multi_net
 docker run -dit --name extra1 --network redextra ubuntu bash
+docker run -dit --name extra2 --network redextra2 ubuntu bash
 docker exec multi_net apt-get update && docker exec multi_net apt-get install -y iputils-ping
 docker exec extra1 apt-get update && docker exec extra1 apt-get install -y iputils-ping
+docker exec extra2 apt-get update && docker exec extra1 apt-get install -y iputils-ping
 docker exec multi_net ping -c 2 extra1    # Funciona
-docker exec multi_net ping -c 2 reddos    # Funciona
+docker exec multi_net ping -c 2 extra2    # Funciona
 ```
 
 **Resolución:**  
-El contenedor multi_net responde a ping tanto de extra1 como de reddos.
+El contenedor multi_net responde a ping tanto de extra1 como de extra2.
 
 ---
 
-## Ejercicio 10: Limpia redes no usadas
-
-**Planteamiento:**  
-Elimina todas las redes que no estén en uso por contenedores activos.
-
-**Desarrollo:**
-```bash
-docker network prune -f
-```
-
-**Resolución:**  
-Ves qué redes se han eliminado y tu sistema queda más ordenado.
-
----
-
-## Ejercicio 11: (Opcional) Simula comunicación entre diferentes redes
-
-**Planteamiento:**  
-Crea dos redes personalizadas y conecta dos contenedores a ambas, simulando un "router" Docker entre subredes.
-
-**Desarrollo:**
-```bash
-docker network create redA
-docker network create redB
-docker run -dit --name nodoA --network redA ubuntu bash
-docker run -dit --name nodoB --network redB ubuntu bash
-docker run -dit --name router --network redA ubuntu bash
-docker network connect redB router
-```
-
-Instala ping en todos:
-```bash
-for c in nodoA nodoB router; do docker exec $c apt-get update && docker exec $c apt-get install -y iputils-ping; done
-```
-
-Prueba ping:
-```bash
-docker exec nodoA ping -c 2 router  # OK
-docker exec nodoB ping -c 2 router  # OK
-docker exec nodoA ping -c 2 nodoB   # NO responde (a menos que actives forwarding en router)
-```
-
-**Resolución:**  
-El contenedor router puede hablar con ambas redes; los otros solo con la suya. Así puedes simular topologías complejas.
-
----
 
 ## Limpieza general
 
+Para y elimina todos los conternedores:
+
 ```bash
-docker rm -f reduno reddos nginxbridge solo_interna multi_net extra1 nodoA nodoB router nginx_macvlan
-docker network rm redtest redprivada redextra redA redB macvlan_demo
+docker stop $(docker ps -q)
+docker rm $(docker ps -a -q)
+```
+
+Elimina todas las redes:
+
+```bash
+docker network rm redextra redextra2 redprivada redtest
 ```
 
 ---
