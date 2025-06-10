@@ -10,10 +10,9 @@
 - [Ejercicio 8: Filtra eventos solo de un contenedor concreto](#ejercicio-8-filtra-eventos-solo-de-un-contenedor-concreto)
 - [Ejercicio 9: Guarda los logs de un contenedor a un archivo para auditoría](#ejercicio-9-guarda-los-logs-de-un-contenedor-a-un-archivo-para-auditoría)
 - [Ejercicio 10: Audita los eventos del sistema durante un periodo](#ejercicio-10-audita-los-eventos-del-sistema-durante-un-periodo)
-- [Ejercicio 11: Configura y revisa logs en formato JSON](#ejercicio-11-configura-y-revisa-logs-en-formato-json)
-- [Ejercicio 12: Redirecciona logs de Docker a syslog (y verifícalo)](#ejercicio-12-redirecciona-logs-de-docker-a-syslog-y-verifícalo)
-- [Ejercicio 13: Debug de contenedores con logs de aplicaciones](#ejercicio-13-debug-de-contenedores-con-logs-de-aplicaciones)
-- [Ejercicio 14: Audita acceso “exec” en contenedores para detectar intrusiones](#ejercicio-14-audita-acceso-exec-en-contenedores-para-detectar-intrusiones)
+- [Ejercicio 11: Redirecciona logs de Docker a syslog (y verifícalo)](#ejercicio-12-redirecciona-logs-de-docker-a-syslog-y-verifícalo)
+- [Ejercicio 12: Debug de contenedores con logs de aplicaciones](#ejercicio-13-debug-de-contenedores-con-logs-de-aplicaciones)
+- [Ejercicio 13: Audita acceso “exec” en contenedores para detectar intrusiones](#ejercicio-14-audita-acceso-exec-en-contenedores-para-detectar-intrusiones)
 
 ---
 
@@ -166,22 +165,7 @@ El archivo `eventos_recientes.log` contiene una lista detallada de los eventos r
 
 ---
 
-## Ejercicio 11: Configura y revisa logs en formato JSON
-
-**Planteamiento:**  
-Cambia el formato de logs de un contenedor a JSON y analiza la salida.
-
-**Desarrollo:**
-```bash
-docker run -d --name json_logger --log-driver=json-file --log-opt format=json nginx
-docker logs json_logger
-```
-**Resolución:**  
-Cada línea del log aparece en formato JSON, útil para análisis automatizado o integración con herramientas externas.
-
----
-
-## Ejercicio 12: Redirecciona logs de Docker a syslog (y verifícalo)
+## Ejercicio 11: Redirecciona logs de Docker a syslog (y verifícalo)
 
 **Planteamiento:**  
 Arranca un contenedor cuyo log se envía a syslog, consulta luego los logs del sistema.
@@ -197,7 +181,7 @@ En los logs del sistema aparecen mensajes de acceso/errores del contenedor.
 
 ---
 
-## Ejercicio 13: Debug de contenedores con logs de aplicaciones
+## Ejercicio 12: Debug de contenedores con logs de aplicaciones
 
 **Planteamiento:**  
 Lanza un contenedor de Python con una app que escribe logs a stdout y stderr, observa ambos.
@@ -218,7 +202,7 @@ Ves ambos tipos de mensajes en el log del contenedor. Puedes filtrar con `grep E
 
 ---
 
-## Ejercicio 14: Audita acceso “exec” en contenedores para detectar intrusiones
+## Ejercicio 13: Audita acceso “exec” en contenedores para detectar intrusiones
 
 **Planteamiento:**  
 Monitorea si alguien ejecuta comandos dentro de un contenedor mediante `docker exec`.
