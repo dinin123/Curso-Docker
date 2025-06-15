@@ -5,15 +5,6 @@ Auditar una aplicación web sencilla en Docker usando herramientas de análisis 
 
 ---
 
-## Requisitos Previos
-
-- Docker instalado
-- Git
-- Linux o WSL (para compatibilidad con todas las herramientas)
-- Permisos de administrador (`sudo`)
-
----
-
 ## Paso 1: Crear una aplicación vulnerable de ejemplo
 
 ```bash
