@@ -1,4 +1,4 @@
-# Ejercicios avzanzados: Índice de ejercicios
+# Ejercicios avanzados
 
 - [Ejercicio 1: Contenedor SSH seguro con Alpine, solo acceso clave RSA y usuario sudo](#ejercicio-1-contenedor-ssh-seguro-con-alpine-solo-acceso-clave-rsa-y-usuario-sudo)
 - [Ejercicio 2: Stack WordPress escalable](#ejercicio-2-stack-wordpress-escalable) 
