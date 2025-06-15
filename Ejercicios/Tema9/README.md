@@ -18,10 +18,11 @@ cd vulnerable-docker
 
 ## Paso 2: Auditar el Dockerfile con Hadolint
 
-### Instalar Hadolint (Debian/Ubuntu)
+### Instalar Hadolint.
 
 ```bash
-sudo apt install hadolint -y
+sudo curl -L https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64 -o /usr/local/bin/hadolint
+sudo chmod +x /usr/local/bin/hadolint
 ```
 
 ### Ejecutar auditoría
@@ -39,7 +40,10 @@ hadolint Dockerfile
 ### Instalar Trivy
 
 ```bash
-sudo apt install trivy -y
+sudo rpm --import https://aquasecurity.github.io/trivy-repo/rpm/public.key
+sudo curl -sL https://aquasecurity.github.io/trivy-repo/rpm/releases.repo -o /etc/yum.repos.d/trivy.repo
+sudo dnf install trivy -y
+
 ```
 
 ### Construir imagen y escanear
