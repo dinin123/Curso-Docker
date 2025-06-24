@@ -283,7 +283,8 @@ Conecta un contenedor a dos redes distintas y verifica que puede comunicarse con
 
 **Desarrollo:**
 ```bash
-docker network create redextra redextra2
+docker network create redextra
+docker network create redextra2
 docker run -dit --name multi_net --network redtest ubuntu bash
 docker network connect redextra multi_net
 docker network connect redextra2 multi_net
