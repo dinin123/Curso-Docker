@@ -1,4 +1,4 @@
-# Comandos Básicos de Docker para Redes 🌐
+# Comandos Básicos de Docker para Redes
 
 ## Tipos de Redes en Docker
 

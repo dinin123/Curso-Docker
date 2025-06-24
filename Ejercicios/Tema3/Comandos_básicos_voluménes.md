@@ -1,4 +1,4 @@
-# Comandos Básicos de Docker para Volúmenes 💾
+# Comandos Básicos de Docker para Volúmenes
 
 ## Tipos de Volúmenes en Docker
 

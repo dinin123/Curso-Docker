@@ -1,4 +1,4 @@
-# Comandos Básicos de Docker Compose ⚙️
+# Comandos Básicos de Docker Compose
 
 Docker Compose permite definir y ejecutar aplicaciones Docker multicontenedor a través de un archivo `docker compose.yml`.
 

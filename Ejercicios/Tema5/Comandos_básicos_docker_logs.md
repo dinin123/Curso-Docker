@@ -1,4 +1,4 @@
-# Comandos de Docker para Gestión de Logs, Eventos y Auditorías 📋
+# Comandos de Docker para Gestión de Logs, Eventos y Auditorías
 
 ## Logs de Contenedores
 

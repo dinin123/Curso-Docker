@@ -1,4 +1,4 @@
-# Comandos Básicos de Docker 🐳
+# Comandos Básicos de Docker
 
 ## Gestión de Contenedores
 
