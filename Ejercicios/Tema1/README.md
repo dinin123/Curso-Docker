@@ -183,11 +183,11 @@ Para ejecutar contenedores, primero necesitamos descargar algunas imágenes.
 
     También puedes encontrar imágenes en línea en [DockerHub](https://hub.docker.com/).
 
-    Ejecuta `docker pull ubuntu:18.04` para descargar una imagen de Ubuntu 16.04 desde DockerHub.
+    Ejecuta `docker pull ubuntu:18.04` para descargar una imagen de Ubuntu 18.04 desde DockerHub.
 
 3. También podemos descargar diferentes versiones de la misma imagen.
 
-    Ejecuta `docker pull ubuntu:24.04` para descargar la imagen de Ubuntu 18.04.
+    Ejecuta `docker pull ubuntu:24.04` para descargar la imagen de Ubuntu 24.04.
 
     Luego, si ejecutamos `docker images` nuevamente, deberíamos ver:
 
