@@ -116,7 +116,6 @@ Sigue los eventos del sistema Docker para ver creación, parada y eliminación d
 docker events
 # En otra terminal:
 docker run --rm --name test1 alpine echo hola
-docker rm -f nginx_logs
 ```
 **Resolución:**  
 Ves líneas del tipo `container start`, `container die`, `container destroy`, etc.
