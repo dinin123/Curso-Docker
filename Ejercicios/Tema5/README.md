@@ -51,7 +51,7 @@ Cada acceso aparece en tiempo real en la salida de logs.
 ## Ejercicio 3: Visualiza solo los errores del contenedor
 
 **Planteamiento:**  
-Lanza un contenedor con una app que imprime errores y filtra solo los mensajes de error.
+Lanza un contenedor con una app que imprime errores y filtra solo los mensajes de error. Lanza cada comando en una consola diferente.
 
 **Desarrollo:**
 ```bash
