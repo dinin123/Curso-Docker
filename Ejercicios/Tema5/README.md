@@ -173,7 +173,7 @@ Arranca un contenedor cuyo log se envía a syslog, consulta luego los logs del s
 ```bash
 docker run -d --name syslog_test --log-driver=syslog nginx
 # Verifica en el host:
-sudo journalctl -t docker | tail -20
+sudo journalctl -t dockerd | tail -20
 ```
 **Resolución:**  
 En los logs del sistema aparecen mensajes de acceso/errores del contenedor.
