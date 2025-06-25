@@ -304,7 +304,7 @@ Normalmente, tmpfs será el más rápido, seguido de named volume y luego bind m
 ---
 
 
-# Ejercicio 12:  Docker Compose con Build de Imagen
+## Ejercicio 12:  Docker Compose con Build de Imagen
 
 Este es un ejemplo básico de cómo usar `docker-compose.yml` para construir una imagen personalizada a partir de un `Dockerfile`.
 
