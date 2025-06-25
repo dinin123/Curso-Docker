@@ -123,7 +123,13 @@ docker compose down
 ## Ejercicio 2: Stack WordPress escalable
 
 **Planteamiento:**
-Despliega un stack compuesto por MySQL, WordPress (inicialmente 1 réplica, escalable hasta 5), phpMyAdmin y HAProxy como balanceador en el puerto 8080, todo unido por redes personalizadas. HAProxy debe estar preconfigurado para balancear hasta 5 WordPress y la conexión a PHPMyAdmin.
+Despliega un stack compuesto por:
+
+- **Haproxy, como balanceador escuchando peticiones en el puerto público 8080.
+- **Wordpress**, Frontales de CMS.
+- **phpMyAdmin**, Gestión de base de datos, http://IP.SERVER/phpmyadmin
+- **Mysql**, Base de datos para WordPress.
+
 
 Hay que definir las siguientes redes:
 
@@ -134,6 +140,8 @@ Hay que definir las siguientes redes:
 | phpMyAdmin   | `intnet`, `backnet`          | Gestión de base de datos      |
 | DB (MySQL)   | `backnet`                    | Base de datos para WordPress  |
 ---
+
+**HAProxy** debe estar preconfigurado para balancear hasta 10 instancias de Wordpress y conexión a **phpMyAdmin**.
 
 Hay que definir los siguintes almacenamientos:
 
