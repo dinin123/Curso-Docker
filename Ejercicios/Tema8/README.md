@@ -127,14 +127,20 @@ Despliega un stack compuesto por MySQL, WordPress (inicialmente 1 réplica, esca
 
 Hay que definir las siguientes redes:
 
-**Pública**: Haproxy  
-**Interna**: Haproxy - Wordpress - PHPMyAdmin  
-**backend**: Wordpress - DB - PHPMyAdmin  
+**Pública* (pubnet)**: Haproxy  
+**Interna (intnet)**:  Haproxy - Wordpress - PHPMyAdmin  
+**backend (backnet)**: Wordpress - DB - PHPMyAdmin  
 
 Hay que definir los siguintes almacenamientos:
 
 **vol-db**: Almacenamiento persistente para los datos de BBDD.  
 **vol-web**: Almacenamiento persistente para los datos de Wordpress. Todos los contenedores de wordpress tienen que compartirlo.  
 
+Recomendación: Usar las siguientes imágenes de Docker Hub:
+
+**mysql:5.7**: Servicio de Base de Datos
+**wordpress:latest: Wordpress
+**phpmyadmin/phpmyadmin**: Servidio PHPMyAdmin
+**haproxy:2.9**: Balanceador HAProxy
 ---
 
