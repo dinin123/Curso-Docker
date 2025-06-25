@@ -32,14 +32,14 @@ FROM alpine:latest
 RUN apk update && apk add --no-cache openssh sudo
 RUN echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config && \
     echo 'PermitRootLogin no' >> /etc/ssh/sshd_config && \
-    echo 'PubkeyAuthentication yes' >> /etc/ssh/sshd_config && \
+    echo 'PubkeyAuthentication yes' >> /etc/ssh/sshd_config 
 RUN adduser -D usuario1
 RUN passwd -u usuario1
 RUN echo 'usuario1 ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN mkdir -p /home/usuario1/.ssh && \
     chown usuario1:usuario1 /home/usuario1/.ssh && \
     chmod 700 /home/usuario1/.ssh
-COPY .id_rsa_usuario1.pub /home/usuario1/.ssh/authorized_keys
+COPY id_rsa_usuario1.pub /home/usuario1/.ssh/authorized_keys
 RUN chown usuario1:usuario1 /home/usuario1/.ssh/authorized_keys && \
     chmod 600 /home/usuario1/.ssh/authorized_keys
 RUN ssh-keygen -A
