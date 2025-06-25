@@ -125,7 +125,7 @@ docker compose down
 **Planteamiento:**
 Despliega un stack compuesto por:
 
-- **Haproxy, como balanceador escuchando peticiones en el puerto público 8080.
+- **Haproxy**, como balanceador escuchando peticiones en el puerto público 8080.
 - **Wordpress**, Frontales de CMS.
 - **phpMyAdmin**, Gestión de base de datos, http://IP.SERVER/phpmyadmin
 - **Mysql**, Base de datos para WordPress.
