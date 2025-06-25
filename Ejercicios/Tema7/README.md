@@ -303,3 +303,71 @@ Normalmente, tmpfs será el más rápido, seguido de named volume y luego bind m
 
 ---
 
+
+# Ejercicio 12:  Docker Compose con Build de Imagen
+
+Este es un ejemplo básico de cómo usar `docker-compose.yml` para construir una imagen personalizada a partir de un `Dockerfile`.
+
+## Estructura de Archivos
+
+Supongamos que tienes la siguiente estructura de directorios:
+
+```
+mi-proyecto/
+│
+├── docker-compose.yml
+├── Dockerfile
+└── html/
+    └── index.html
+```
+
+## docker-compose.yml
+
+```yaml
+version: '3.8'
+
+services:
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: miwebapp:latest
+    ports:
+      - "8080:80"
+```
+
+## Dockerfile
+
+```Dockerfile
+# Dockerfile
+FROM nginx:alpine
+COPY ./html /usr/share/nginx/html
+```
+
+Este Dockerfile toma una imagen base de Nginx y copia los archivos del directorio `html/` al directorio de contenido estático de Nginx.
+
+## Comandos
+
+Para construir y ejecutar el contenedor:
+
+```bash
+docker-compose up --build
+```
+
+Para detener y eliminar los contenedores:
+
+```bash
+docker-compose down
+```
+
+## Resultado
+
+Después de ejecutar el comando, deberías poder acceder a tu aplicación en:
+
+```
+http://localhost:8080
+```
+
+## Personalización
+
+Puedes modificar el `Dockerfile` para usar otra imagen base, instalar paquetes o copiar otros archivos, dependiendo de tus necesidades.
