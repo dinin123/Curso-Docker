@@ -134,14 +134,14 @@ Hay que definir las siguientes redes:
 Hay que definir los siguintes almacenamientos:
 
 **vol-db**: Almacenamiento persistente para los datos de BBDD.  
-**vol-web**: Almacenamiento persistente para los datos de Wordpress. Todos los contenedores de wordpress tienen que compartirlo.  
+**vol-web**: Almacenamiento persistente para los datos de Wordpress. Todos los contenedores de wordpress tienen que compartirlo.
 
 Recomendación: Usar las siguientes imágenes de Docker Hub:
 
-**mysql:5.7**: Servicio de Base de Datos.
-**wordpress:latest**: Wordpress.
-**phpmyadmin/phpmyadmin**: Servidio PHPMyAdmin.
-**haproxy:2.9**: Balanceador HAProxy
+**mysql:5.7**: Servicio de Base de Datos.  
+**wordpress:latest**: Wordpress.  
+**phpmyadmin/phpmyadmin**: Servidio PHPMyAdmin.  
+**haproxy:2.9**: Balanceador HAProxy.  
 
 ---
 
