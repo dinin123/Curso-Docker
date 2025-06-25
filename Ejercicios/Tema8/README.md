@@ -127,7 +127,7 @@ Despliega un stack compuesto por MySQL, WordPress (inicialmente 1 réplica, esca
 
 Hay que definir las siguientes redes:
 
-**Pública* (pubnet)**: Haproxy  
+**Pública (pubnet)**: Haproxy  
 **Interna (intnet)**:  Haproxy - Wordpress - PHPMyAdmin  
 **backend (backnet)**: Wordpress - DB - PHPMyAdmin  
 
