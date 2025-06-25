@@ -11,7 +11,7 @@
 9. [Ejercicio 9: Añade un servicio adicional solo para desarrollo](#ejercicio-9-añade-un-servicio-adicional-solo-para-desarrollo)
 10. [Ejercicio 10: Limpia todos los recursos de Compose](#ejercicio-10-limpia-todos-los-recursos-de-compose)
 11. [Ejercicio 11: Orquesta y mide el rendimiento de acceso a disco en diferentes servicios](#ejercicio-11-orquesta-y-mide-el-rendimiento-de-acceso-a-disco-en-diferentes-servicios)
-12. [Ejercicio 12: Docker Compose con Build de Imagen] (#Este es un ejemplo básico de cómo usar)
+12. [Ejercicio 12: Docker Compose con Build de Imagen]
 ---
 
 ## Ejercicio 1: Crea un `docker-compose.yml` mínimo y lanza un servicio web
