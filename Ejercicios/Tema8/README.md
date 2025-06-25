@@ -127,9 +127,13 @@ Despliega un stack compuesto por MySQL, WordPress (inicialmente 1 réplica, esca
 
 Hay que definir las siguientes redes:
 
-**Pública (pubnet)**: Haproxy  
-**Interna (intnet)**:  Haproxy - Wordpress - PHPMyAdmin  
-**backend (backnet)**: Wordpress - DB - PHPMyAdmin  
+| Contenedor   | Redes conectadas             | Función principal              |
+|--------------|------------------------------|--------------------------------|
+| HAProxy      | `pubnet`, `intnet`           | Proxy inverso público         |
+| WordPress    | `intnet`, `backnet`          | CMS frontal                   |
+| phpMyAdmin   | `intnet`, `backnet`          | Gestión de base de datos      |
+| DB (MySQL)   | `backnet`                    | Base de datos para WordPress  |
+---
 
 Hay que definir los siguintes almacenamientos:
 
@@ -143,34 +147,5 @@ Hay que definir los siguintes almacenamientos:
 **phpmyadmin/phpmyadmin**: Servidio PHPMyAdmin.  
 **haproxy:2.9**: Balanceador HAProxy.  
 
-## Esquema Lógico de Red
-
-```text
-[Internet]
-    |
-    |         pubnet
-    v
- [HAProxy]
-    |        intnet
-    v
- [WordPress]       [phpMyAdmin]
-     |                   |
-     |        backnet    |
-     +-------------------+
-             |
-             v
-           [DB]
-```
-
----
-
-## Tabla de Conectividad
-
-| Contenedor   | Redes conectadas             | Función principal              |
-|--------------|------------------------------|--------------------------------|
-| HAProxy      | `pubnet`, `intnet`           | Proxy inverso público         |
-| WordPress    | `intnet`, `backnet`          | CMS frontal                   |
-| phpMyAdmin   | `intnet`, `backnet`          | Gestión de base de datos      |
-| DB (MySQL)   | `backnet`                    | Base de datos para WordPress  |
 ---
 
