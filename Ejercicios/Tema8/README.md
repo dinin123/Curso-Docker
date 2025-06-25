@@ -141,7 +141,7 @@ Hay que definir las siguientes redes:
 | DB (MySQL)   | `backnet`                    | Base de datos para WordPress  |
 ---
 
-**HAProxy** debe estar preconfigurado para balancear hasta 10 instancias de Wordpress y conexión a **phpMyAdmin**.
+**HAProxy** debe estar preconfigurado para balancear hasta 10 instancias de **Wordpress** y conexión a **phpMyAdmin**.
 
 Hay que definir los siguintes almacenamientos:
 
