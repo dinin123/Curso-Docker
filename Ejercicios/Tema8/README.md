@@ -152,7 +152,7 @@ Hay que definir los siguintes almacenamientos:
 
 **mysql:5.7**: Servicio de Base de Datos.  
 **wordpress:latest**: Wordpress.  
-**phpmyadmin/phpmyadmin**: Servidio PHPMyAdmin.  
+**phpmyadmin/phpmyadmin**: Servidio phpMyAdmin.  
 **haproxy:2.9**: Balanceador HAProxy.  
 
 ---
