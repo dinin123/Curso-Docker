@@ -157,7 +157,7 @@ Guarda todos los eventos Docker ocurridos durante los últimos 5 minutos en un f
 
 **Desarrollo:**
 ```bash
-docker events --since 5m > eventos_recientes.log
+docker events --since 5m --until 0s > eventos_recientes.log
 ```
 **Resolución:**  
 El archivo `eventos_recientes.log` contiene una lista detallada de los eventos recientes del daemon Docker.
