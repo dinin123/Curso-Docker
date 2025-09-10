@@ -50,7 +50,7 @@ proyecto-ssh/
 # Ejercicio 2: Stack WordPress escalable
 
 **Planteamiento:**
-Despliega un stack compuesto por MySQL, WordPress (inicialmente 1 réplica, escalable hasta 5), phpMyAdmin y HAProxy como balanceador en el puerto 8080, todo unido por redes personalizadas. HAProxy debe estar preconfigurado para balancear hasta 5 WordPress y la conexión a PHPMyAdmin.
+Despliega un stack compuesto por MySQL, WordPress, phpMyAdmin y HAProxy como balanceador, todo unido por redes personalizadas. HAProxy debe estar preconfigurado para balancear hasta 5 WordPress y la conexión a PHPMyAdmin.
 
 - MySQL
 - WordPress (inicialmente 1 réplica, escalable hasta 5)
