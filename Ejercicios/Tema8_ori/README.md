@@ -46,7 +46,6 @@ proyecto-ssh/
 
 ---
 
-```
 
 # Ejercicio 2: Stack WordPress escalable
 
