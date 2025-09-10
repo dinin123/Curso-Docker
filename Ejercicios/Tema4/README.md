@@ -292,7 +292,7 @@ docker run -dit --name extra1 --network redextra ubuntu bash
 docker run -dit --name extra2 --network redextra2 ubuntu bash
 docker exec multi_net apt-get update && docker exec multi_net apt-get install -y iputils-ping
 docker exec extra1 apt-get update && docker exec extra1 apt-get install -y iputils-ping
-docker exec extra2 apt-get update && docker exec extra1 apt-get install -y iputils-ping
+docker exec extra2 apt-get update && docker exec extra2 apt-get install -y iputils-ping
 docker exec multi_net ping -c 2 extra1    # Funciona
 docker exec multi_net ping -c 2 extra2    # Funciona
 ```
