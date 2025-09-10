@@ -52,6 +52,13 @@ proyecto-ssh/
 **Planteamiento:**
 Despliega un stack compuesto por MySQL, WordPress (inicialmente 1 réplica, escalable hasta 5), phpMyAdmin y HAProxy como balanceador en el puerto 8080, todo unido por redes personalizadas. HAProxy debe estar preconfigurado para balancear hasta 5 WordPress y la conexión a PHPMyAdmin.
 
+- MySQL
+- WordPress (inicialmente 1 réplica, escalable hasta 5)
+- phpMyAdmin
+- HAProxy como balanceador en el puerto 8080
+
+
+
 Hay que definir las siguientes redes:
 
 **Pública**: Haproxy  
